@@ -15,10 +15,10 @@ class Movie
 {
 public:
 	Movie();							// default constructor
-	~Movie();
+	~Movie() { cout << "~Movie()"; }
 	Movie(int&, int&, string&, string&, string&);
 	Movie(const Movie&);				// copy constructor
-	
+
 	Movie& operator=(const Movie&);
 	bool operator==(const Movie&) const;
 	bool operator!=(const Movie&) const;

@@ -14,7 +14,7 @@
 #include "Movie.h"
 using namespace std;
 
-template <typename T>
+template <class T>
 class NodeData 
 {
 	friend ostream & operator<<(ostream&, const NodeData<T>&);

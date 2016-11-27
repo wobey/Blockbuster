@@ -7,8 +7,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 #include "Drama.h"
 
-Drama::Drama(int& count, int& year, string& name, string& director, string& genre)
-	 : Movie(count, year, name, director, genre)
-{
-
-}
+//Drama::Drama(int& count, int& year, string& name, string& director, string& genre)
+//	 : Movie(count, year, name, director, genre)
+//{
+//
+//}

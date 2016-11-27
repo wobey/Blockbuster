@@ -7,8 +7,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 #include "Comedy.h"
 
-Comedy::Comedy(int& count, int& year, string& name, string& director, string& genre)
-	   : Movie(count, year, name, director, genre) 
-{
-
-}
+//Comedy::Comedy(int& count, int& year, string& name, string& director, string& genre)
+//	   : Movie(count, year, name, director, genre) 
+//{
+//
+//}
