@@ -1,29 +1,21 @@
-// ------------------------------------------------ Comedy.h ----------------------------------------------------------
-// John Fitzgerald, Christine Sutton CSS343 A 
-// Date of Creation: 11-24-16
-// Date of Last Modification: 11-24-16
-// --------------------------------------------------------------------------------------------------------------------
-// Purpose: 
-// --------------------------------------------------------------------------------------------------------------------
-#ifndef COMEDY_H
-#define COMEDY_H
-#include <string>
+#ifndef COMEDY_H_INCLUDED
+#define COMEDY_H_INCLUDED
+
 #include <iostream>
+
 #include "Movie.h"
+
 using namespace std;
 
 class Comedy : public Movie
 {
-	friend ostream& operator<<(ostream&, const Comedy&);
+	friend ostream& operator<<(ostream& output, const Comedy com);
 
 public:
-	Comedy();							// default constructor
+	//constructors
+	Comedy(int ct, int yr, string name, string dir);
+	Comedy(const Comedy&);
 	~Comedy();
-	Comedy(int&, int&, string&, string&, string&);
-	Comedy(const Comedy&);				// copy constructor
 
-	Comedy& operator=(const Comedy&);
-	bool operator==(const Comedy&) const;
-	bool operator!=(const Comedy&) const;
 };
-#endif
+#endif //COMEDY_H_INCLUDED

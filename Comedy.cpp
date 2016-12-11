@@ -1,14 +1,24 @@
-// ------------------------------------------------ Comedy.cpp ----------------------------------------------------------
-// John Fitzgerald, Christine Sutton CSS343 A 
-// Date of Creation: 11-24-16
-// Date of Last Modification: 11-24-16
-// --------------------------------------------------------------------------------------------------------------------
-// Purpose: 
-// --------------------------------------------------------------------------------------------------------------------
+#include "stdafx.h"
 #include "Comedy.h"
 
-//Comedy::Comedy(int& count, int& year, string& name, string& director, string& genre)
-//	   : Movie(count, year, name, director, genre) 
-//{
-//
-//}
+
+
+Comedy::Comedy(int ct, int yr, string name, string dir): Movie(ct, yr, name, dir)
+{
+} //end Comedy
+
+Comedy::Comedy(const Comedy &com)
+{
+	*this = com;
+} //end Comedy
+
+ostream& operator<<(ostream& output, Comedy &drm)
+{
+	output << "Title: " << drm.getTitle() << " / Director: " << drm.getDirector() << ", Year: " << drm.getYear()
+		<< ", Stock: " << drm.getStock() << "Genre: Comedy" << endl;
+	return output;
+} //end operator<<
+
+Comedy::~Comedy()
+{
+} //end ~Comedy

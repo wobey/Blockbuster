@@ -1,33 +1,47 @@
-// ------------------------------------------------ Movie.h ----------------------------------------------------------
-// John Fitzgerald, Christine Sutton CSS343 A 
-// Date of Creation: 11-24-16
-// Date of Last Modification: 11-24-16
-// --------------------------------------------------------------------------------------------------------------------
-// Purpose: 
-// --------------------------------------------------------------------------------------------------------------------
-#ifndef MOVIE_H
-#define MOVIE_H
+#ifndef MOVIE_H_INCLUDED
+#define MOVIE_H_INCLUDED
+
 #include <string>
 #include <iostream>
+
 using namespace std;
 
 class Movie
 {
-public:
-	Movie();							// default constructor
-	~Movie() { cout << "~Movie()"; }
-	Movie(int&, int&, string&, string&, string&);
-	Movie(const Movie&);				// copy constructor
+	friend ostream& operator<<(ostream& output, const Movie &mov);
 
-	Movie& operator=(const Movie&);
-	bool operator==(const Movie&) const;
-	bool operator!=(const Movie&) const;
+public:
+	//constructors
+	Movie();
+	Movie(int ct, int yr, string name, string dir);
+	Movie(const Movie&);
+	virtual ~Movie();
+
+	//getters and setters
+	int getStock();
+	int getYear();
+	string getTitle();
+	string getDirector();
+
+	void setStock(int);
+	void setYear(int);
+	void setTitle(string);
+	void setDirector(string);
+
+	//assigns
+	virtual Movie operator=(const Movie &mov);
+
+	//operator overloads
+	virtual bool operator>(const Movie&);
+	virtual bool operator==(const Movie&);
+	virtual bool operator!=(const Movie&);
 
 private:
+	//data
 	int stock;
 	int year;
 	string title;
 	string director;
-	string genre;						// C, D, or F
+
 };
-#endif
+#endif // MOVIE_H_INCLUDED

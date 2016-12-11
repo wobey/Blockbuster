@@ -1,34 +1,44 @@
-// ------------------------------------------------ Classic.h ----------------------------------------------------------
-// John Fitzgerald, Christine Sutton CSS343 A 
-// Date of Creation: 11-24-16
-// Date of Last Modification: 11-24-16
-// --------------------------------------------------------------------------------------------------------------------
-// Purpose: 
-// --------------------------------------------------------------------------------------------------------------------
-#ifndef CLASSIC_H
-#define CLASSIC_H
-#include <string>
+#ifndef CLASSIC_H_INCLUDED
+#define CLASSIC_H_INCLUDED
+
 #include <iostream>
+
 #include "Movie.h"
+
 using namespace std;
 
 class Classic : public Movie
 {
-	friend ostream& operator<<(ostream&, const Classic&);
+	friend ostream& operator<<(ostream&, Classic);
 
 public:
-	Classic();							// default constructor
+	//constructors
+	Classic(int ct, int yr, string name, string dir, string actorFirst, string actorLast, int mon);
 	~Classic();
-	Classic(int&, int&, string&, string&, string&, string&, int&, string&);
-	Classic(const Classic&);			// copy constructor
 
-	Classic& operator=(const Classic&);
-	bool operator==(const Classic&) const;
-	bool operator!=(const Classic&) const;
+	//assignment
+	Classic operator=(Classic&);
+	Classic operator+(int);
+
+	//comparison
+	bool operator==(Classic&);
+	bool operator!=(Classic&);
+	bool operator>(Classic&);
+
+	//get and set
+	string getActorFirst();
+	string getActorLast();
+	int getMonth();
+
+	void setActorFirst(string);
+	void setActorLast(string);
+	void setMonth(int);
 
 private:
-	string actorFirstName;
-	string actorLastName;
+	//data
+	string actorFirst;
+	string actorLast;
 	int month;
+
 };
-#endif
+#endif// CLASSIC_H_INCLUDED

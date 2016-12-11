@@ -1,29 +1,21 @@
-// ------------------------------------------------ Drama.h ----------------------------------------------------------
-// John Fitzgerald, Christine Sutton CSS343 A 
-// Date of Creation: 11-24-16
-// Date of Last Modification: 11-24-16
-// --------------------------------------------------------------------------------------------------------------------
-// Purpose: 
-// --------------------------------------------------------------------------------------------------------------------
-#ifndef DRAMA_H
-#define DRAMA_H
-#include <string>
+#ifndef DRAMA_H_INCLUDED
+#define DRAMA_H_INCLUDED
+
 #include <iostream>
+
 #include "Movie.h"
+
 using namespace std;
 
 class Drama : public Movie
 {
-	friend ostream& operator<<(ostream&, const Drama&);
+	friend ostream& operator<<(ostream& output, Drama &drm);
 
 public:
-	Drama();							// default constructor
+	//constructors
+	Drama(int ct, int yr, string name, string dir);
+	Drama(const Drama&);
 	~Drama();
-	Drama(int&, int&, string&, string&, string&);
-	Drama(const Drama&);				// copy constructor
 
-	Drama& operator=(const Drama&);
-	bool operator==(const Drama&) const;
-	bool operator!=(const Drama&) const;
 };
-#endif
+#endif //DRAMA_H_INCLUDED

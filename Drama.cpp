@@ -1,14 +1,23 @@
-// ------------------------------------------------ Drama.cpp ----------------------------------------------------------
-// John Fitzgerald, Christine Sutton CSS343 A 
-// Date of Creation: 11-24-16
-// Date of Last Modification: 11-24-16
-// --------------------------------------------------------------------------------------------------------------------
-// Purpose: 
-// --------------------------------------------------------------------------------------------------------------------
+#include "stdafx.h"
 #include "Drama.h"
 
-//Drama::Drama(int& count, int& year, string& name, string& director, string& genre)
-//	 : Movie(count, year, name, director, genre)
-//{
-//
-//}
+
+Drama::Drama(int ct, int yr, string name, string dir): Movie(ct, yr, name, dir)
+{
+} //end Drama()
+
+Drama::Drama(const Drama &drm)
+{
+	*this = drm;
+}
+
+ostream& operator<<(ostream& output, Drama &drm)
+{
+	output << "Title: " << drm.getTitle() << " / Director: " << drm.getDirector() << ", Year: " << drm.getYear() 
+		<< ", Stock: " << drm.getStock() << "Genre: Drama" << endl;
+	return output;
+}
+
+Drama::~Drama()
+{
+}
