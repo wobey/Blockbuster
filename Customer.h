@@ -16,7 +16,7 @@ class Customer
 {
 public:
 	Customer();								// default constructor
-	Customer(int&, string&, string&);
+	Customer(int, string, string);
 	Customer(const Customer&);
 	~Customer();							// destructor
 
@@ -28,7 +28,7 @@ private:
 	int id;
 	string lastName;
 	string firstName;
-	MediaLibrary rentals;
-	TransactionHistory history;
+	//MediaLibrary rentals;
+	//TransactionHistory history;
 };
 #endif

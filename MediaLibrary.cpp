@@ -1,4 +1,4 @@
-#include "stdafx.h"
+//#include "stdafx.h"
 #include "MediaLibrary.h"
 
 MediaLibrary::MediaLibrary()
@@ -18,6 +18,3 @@ MediaLibrary::~MediaLibrary()
 {
 	//TODO: delete dynamically allocated BSTrees
 }
-
-
-

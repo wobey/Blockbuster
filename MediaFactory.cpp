@@ -1,4 +1,4 @@
-#include "stdafx.h"
+//#include "stdafx.h"
 #include "MediaFactory.h"
 
 Movie* MediaFactory::createMovie(char type, int stock, string dir, string title, int ryear, string actorFirst, string actorLast, int rmonth)

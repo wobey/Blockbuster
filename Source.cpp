@@ -11,11 +11,19 @@
 //---------------------------------------------------------------------------
 
 #include <iostream>
+//#include "HashTable.cpp"
+#include "HashTable.h"
+#include "Customer.h"
 using namespace std;
 
 int main()
 {
-	
+	HashTable<Customer> customers;
+
+	Customer* testCustomer = new Customer(2, "Fitzgerald", "John");
+
+	if (customers.insert(testCustomer))
+		cout << "Success!" << endl;
 
 	return 0;
 }
