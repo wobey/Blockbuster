@@ -17,7 +17,8 @@ using namespace std;
 template <class T>
 class NodeData 
 {
-	friend ostream & operator<<(ostream&, const NodeData<T>&);
+	template <class T1>
+	friend ostream & operator<<(ostream&, const NodeData<T1>&);
 
 public:
 	NodeData<T>();							// default constructor, data is set to an empty string

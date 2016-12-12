@@ -95,8 +95,8 @@ bool NodeData<T>::setData(istream& infile)
 displaying its own data.
 */
 //-------------------------- operator<< --------------------------------------
-template <typename T>
-ostream& operator<<(ostream& output, const NodeData<T>& nd)
+template <typename T1>
+ostream& operator<<(ostream& output, const NodeData<T1>& nd)
 {
 	output << nd.data;
 	return output;

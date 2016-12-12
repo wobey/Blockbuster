@@ -8,26 +8,34 @@
 #ifndef CUSTOMER_H
 #define CUSTOMER_H
 #include <iostream>
+#include <fstream>
 #include "MediaLibrary.h"
 #include "TransactionHistory.h"
 using namespace std;
 
 class Customer
 {
+	friend ostream& operator<<(ostream& ostream, const Customer& rhs);
+
 public:
 	Customer();								// default constructor
-	Customer(int, string, string);
+	Customer(string, string, string);
 	Customer(const Customer&);
 	~Customer();							// destructor
 
+	string getID() const;
+	string getFirstName() const;
+	string getLastName() const;
+
+	int hash() const;
 	Customer& operator=(const Customer&);
 	bool operator==(const Customer&);
 	bool operator!=(const Customer&);
 
 private:
-	int id;
-	string lastName;
+	string id;
 	string firstName;
+	string lastName;
 	//MediaLibrary rentals;
 	//TransactionHistory history;
 };

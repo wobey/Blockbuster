@@ -11,7 +11,7 @@ MediaLibrary::MediaLibrary()
 Movie* MediaLibrary::search(int, int, string, string)
 {
 
-	return nullptr;
+	return NULL;//nullptr;
 }
 
 MediaLibrary::~MediaLibrary()

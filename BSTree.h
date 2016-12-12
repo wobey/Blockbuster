@@ -17,7 +17,8 @@ using namespace std;
 template <class T>							// T is either Drama, Comedy, or Classic
 class BSTree
 {
-	friend ostream & operator<<(ostream&, const BSTree&);
+	template <class T1>
+	friend ostream & operator<<(ostream&, const BSTree<T1>&);
 
 public:
 	BSTree();								// constructor
@@ -480,19 +481,6 @@ void BSTree<T>::sideways(Node* current, int level) const {
 	}
 }
 
-
-//-------------------------- operator<< --------------------------------------
-// stream operator to output in-order BST
-template <class T>
-ostream& operator<<(ostream& output, const BSTree<T>& bst)
-{
-	// in-order traversal output of the values
-	bst.displayInOrder(bst.root, output);
-	output << endl;
-
-	return output;
-}
-
 //-------------------------- displayInOrder --------------------------------------
 // a helper function for the stream operator to output in-order BST
 template <class T>
@@ -505,4 +493,16 @@ void BSTree<T>::displayInOrder(const Node* currNode, ostream& output) const
 		output << *currNode->data << " ";
 		displayInOrder(currNode->right, output);
 	}
+}
+
+//-------------------------- operator<< --------------------------------------
+// stream operator to output in-order BST
+template <class T1>
+ostream& operator<<(ostream& output, const BSTree<T1>& bst)
+{
+	// in-order traversal output of the values
+	bst.displayInOrder(bst.root, output);
+	output << endl;
+
+	return output;
 }

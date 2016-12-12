@@ -10,5 +10,5 @@ Movie* MediaFactory::createMovie(char type, int stock, string dir, string title,
 	else if (type == 'F')
 		return new Comedy(stock, ryear, title, dir);
 	else
-		return nullptr;
+		return NULL;//nullptr;
 }

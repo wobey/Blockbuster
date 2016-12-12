@@ -20,10 +20,15 @@ int main()
 {
 	HashTable<Customer> customers;
 
-	Customer* testCustomer = new Customer(2, "Fitzgerald", "John");
+	Customer* testCustomer1 = new Customer("22", "Fitzgerald", "John");
+	Customer* testCustomer2 = new Customer("33", "Sutton", "Christine");
+	Customer* testCustomer3 = new Customer("12", "Marley", "Bob");
 
-	if (customers.insert(testCustomer))
-		cout << "Success!" << endl;
+	customers.insert(testCustomer1);
+	customers.insert(testCustomer2);
+	customers.insert(testCustomer3);
+
+	cout << customers;
 
 	return 0;
 }
