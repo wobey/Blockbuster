@@ -14,11 +14,11 @@ using namespace std;
 
 static const int MAX_BUCKETS = 997;
 
-template <typename T>
+template <class T>
 class HashTable
 {
-	template <typename T1>
-	friend ostream& operator<<(ostream& ostream, const HashTable<T1>& rhs);
+	template <class T1>
+	friend ostream& operator<<(ostream&, const HashTable<T1>&);
 
 public:
 	HashTable();							// default constructor

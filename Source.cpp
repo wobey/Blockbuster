@@ -11,64 +11,113 @@
 //---------------------------------------------------------------------------
 
 #include <iostream>
-//#include "HashTable.cpp"
 #include "HashTable.h"
 #include "Customer.h"
+#include "BSTree.h"
+#include "Classic.h"
+#include "Comedy.h"
+#include "Drama.h"
 using namespace std;
 
 int main()
 {
-	HashTable<Customer> customers;
+	// ******************************************************
+	//					 BSTREE TEST
+	// ******************************************************
 
-	//Customer* testCustomer1 = new Customer("22", "Fitzgerald", "John");
-	//Customer* testCustomer2 = new Customer("33", "Sutton", "Christine");
-	//Customer* testCustomer3 = new Customer("12", "Marley", "Bob");
+	BSTree<Classic> classics;
+	BSTree<Comedy> comedies;
+	BSTree<Drama> dramas;
+	//Classic* classic;
+	//Comedy* comedy;
 
-	//customers.insert(testCustomer1);
-	//customers.insert(testCustomer2);
-	//customers.insert(testCustomer3);
+	//fstream infile1("data4movies.txt");
+	//if (!infile1) {
+	//	cout << "File could not be opened." << endl;
+	//	return 1;
+	//}
+
+	int stock, ryear, rmonth;
+	string line, type, title, dir, actorFirst, actorLast;
+	Drama* drama1;
+	Drama* drama2;
+	Drama* drama3;
+
+	drama1 = new Drama(10, 1995, "Bob's Burgers", "Pete and Pete");
+	drama2 = new Drama(8, 2001, "Hand", "Das Boot");
+	drama3 = new Drama(7, 1921, "Cup", "Vertical");
+
+	dramas.insert(drama1, "Pete and Pete", "Bob's Burgers");
+	dramas.insert(drama2, "Das Boot", "Hand");
+	dramas.insert(drama3, "Vertical", "Cup");
+
+	//while (getline(infile1, line, ','))
+	//{
+	//	infile1 >> type;
+
+	//	cout << type << endl;
+
+	//	if (type != "" && (type == "C" || type == "D" || type == "F"))
+	//	{
+			//if (type == "C,")
+			//{
+			//	classic = new Classic(stock, ryear, title, dir, actorFirst, actorLast, rmonth);
+			//	classics.insert(classic);
+			//}
+			//else if (type == "D,")
+			//{
+			//	drama = new Drama(stock, ryear, title, dir);
+			//	dramas.insert(drama);
+			//}
+			//else if (type == "F,")
+			//{
+			//	comedy = new Comedy(stock, ryear, title, dir);
+			//	comedies.insert(comedy);
+			//}
+	//	}
+	//}
+	//infile1.close();
+
+
+	// ******************************************************
+	//					HASH TABLE TEST
+	// ******************************************************
+
+	//HashTable<Customer> customers;
+
+	//fstream infile2("data4customers.txt");
+	//if (!infile2) {
+	//	cout << "File could not be opened." << endl;
+	//	return 1;
+	//}
+
+	//Customer* customer;
+
+	//while (!infile2.eof())
+	//{
+	//	string id, last, first;
+
+	//	infile2 >> id >> last >> first;
+	//	
+	//	customer = new Customer(id, last, first);
+
+	//	if (id != "")
+	//		customers.insert(customer);
+	//	else
+	//		delete customer;
+	//}
+	//infile2.close();
 
 	//cout << customers;
+	//cout << endl;
+	//cout << "#Entries:" << customers.getNumEntries();
 
+	//cout << endl;
+	//cout << "Exists: " << customers.entryExists("5000") << endl;
+	//cout << "Exists: " << customers.entryExists("5001") << endl;
 
-
-
-	fstream infile("data4customers.txt");
-	if (!infile) {
-		cout << "File could not be opened." << endl;
-		return 1;
-	}
-
-	Customer* customer;
-
-	while (!infile.eof())
-	{
-		string id, last, first;
-
-		infile >> id;
-
-		infile >> last;
-		infile >> first;
-		
-		customer = new Customer(id, last, first);
-
-		if (id != "")
-			customers.insert(customer);
-		else
-			delete customer;
-	}
-	infile.close();
-
-	cout << customers;
-	cout << endl;
-	cout << "#Entries:" << customers.getNumEntries();
-
-	cout << endl;
-	cout << "Exists: " << customers.entryExists("5000") << endl;
-	cout << "Exists: " << customers.entryExists("5001") << endl;
-
-	customer = customers.retrieve("5000");
-	cout << *customer << endl;
-
+	//customer = customers.retrieve("5000");
+	//cout << *customer << endl;
+	
 	return 0;
 }

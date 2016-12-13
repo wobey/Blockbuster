@@ -8,29 +8,31 @@
 #ifndef BSTREE_H
 #define BSTREE_H
 #include <iostream>
+#include <fstream>
 #include "Classic.h"
 #include "Comedy.h"
 #include "Drama.h"
-//#include "NodeData.h"
 using namespace std;
 
+#pragma once
 template <class T>							// T is either Drama, Comedy, or Classic
 class BSTree
 {
 	template <class T1>
-	friend ostream & operator<<(ostream&, const BSTree<T1>&);
+	friend ostream& operator<<(ostream&, const BSTree<T1>&);
 
 public:
 	BSTree();								// constructor
 	BSTree(const BSTree&);					// copy constructor
 	~BSTree();								// destructor, calls makeEmpty	
+	
 	bool isEmpty() const;					// true if tree is empty, otherwise false
 	void makeEmpty();						// make the tree empty so isEmpty returns true
 	BSTree& operator=(const BSTree&);
 	bool operator==(const BSTree&) const;
 	bool operator!=(const BSTree&) const;
 
-	bool insert(const T*);
+	bool insert(T*, string, string);
 	bool retrieve(const T&, T*&);
 	void displaySideways() const;			// provided below, displays the tree sideways
 	//int getHeight(const NodeData<T>&) const;
@@ -40,7 +42,9 @@ public:
 private:
 	struct Node
 	{
-		T data;					// pointer to data object
+		T* data;						// pointer to data object
+		string firstSortCriterion;
+		string secondSortCriterion;
 		Node* left;						// left subtree pointer
 		Node* right;					// right subtree pointer
 	};
@@ -61,7 +65,6 @@ private:
 	//void bstreetoArray(NodeData<T>*[], Node*, int&);
 	//Node* arrayToBSTree(NodeData<T>*[], int, int);
 };
-
 #endif
 
 //---------------------------- DefaultConstructor -------------------------------------
@@ -234,7 +237,7 @@ bool BSTree<T>::operator!=(const BSTree& rightBST) const
 //---------------------------- insert -------------------------------------
 // insert a node into the BST
 template <class T>
-bool BSTree<T>::insert(const T* dataNode)
+bool BSTree<T>::insert(T* dataNode, string first, string second)
 {
 	Node *newNode;
 	bool isUnique = true;
@@ -243,6 +246,8 @@ bool BSTree<T>::insert(const T* dataNode)
 	newNode = new Node;
 	newNode->data = dataNode;
 	newNode->left = newNode->right = NULL;
+	newNode->firstSortCriterion = first;
+	newNode->secondSortCriterion = second;
 
 	// insert the node recursively
 	insert(root, newNode, isUnique);
@@ -271,11 +276,18 @@ void BSTree<T>::insert(Node*& currNode, Node*& newNode, bool& isUnique)
 		currNode = newNode;                  // Insert the node.
 		//cout << *currNode->data;
 	}
-	else if (*newNode->data < *currNode->data)
+	//else if (*newNode->data < *currNode->data)
+	//	insert(currNode->left, newNode, isUnique);     // Search the left branch
+	//else if (*newNode->data > *currNode->data)
+	//	insert(currNode->right, newNode, isUnique);    // Search the right branch
+	//else if (*newNode->data == *currNode->data)
+	//	isUnique = false;					// Data is a duplicate
+
+	else if (newNode->firstSortCriterion < currNode->firstSortCriterion)
 		insert(currNode->left, newNode, isUnique);     // Search the left branch
-	else if (*newNode->data > *currNode->data)
+	else if (newNode->firstSortCriterion > currNode->firstSortCriterion)
 		insert(currNode->right, newNode, isUnique);    // Search the right branch
-	else if (*newNode->data == *currNode->data)
+	else if (newNode->firstSortCriterion == currNode->firstSortCriterion)		// TODO: SWITCH TO SECOND SEARCH CRITERION
 		isUnique = false;					// Data is a duplicate
 }
 
