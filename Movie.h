@@ -36,6 +36,10 @@ public:
 	virtual bool operator==(const Movie&);
 	virtual bool operator!=(const Movie&);
 
+	//other
+	virtual bool decreaseStock();
+	virtual bool increaseStock();
+
 private:
 	//data
 	int stock;

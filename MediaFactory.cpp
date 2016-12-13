@@ -1,4 +1,4 @@
-//#include "stdafx.h"
+#include "stdafx.h"
 #include "MediaFactory.h"
 
 Movie* MediaFactory::createMovie(char type, int stock, string dir, string title, int ryear, string actorFirst, string actorLast, int rmonth)
@@ -10,5 +10,5 @@ Movie* MediaFactory::createMovie(char type, int stock, string dir, string title,
 	else if (type == 'F')
 		return new Comedy(stock, ryear, title, dir);
 	else
-		return NULL;//nullptr;
+		return NULL;
 }

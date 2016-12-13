@@ -1,4 +1,4 @@
-//#include "stdafx.h"
+#include "stdafx.h"
 #include "MediaLibrary.h"
 
 MediaLibrary::MediaLibrary()
@@ -8,13 +8,16 @@ MediaLibrary::MediaLibrary()
 	comedies = new BSTree<Comedy>;
 }
 
-Movie* MediaLibrary::search(int, int, string, string)
+Movie* MediaLibrary::search(int, int, string, string, string)
 {
 
-	return NULL;//nullptr;
+	return NULL;
 }
 
 MediaLibrary::~MediaLibrary()
 {
 	//TODO: delete dynamically allocated BSTrees
 }
+
+
+

@@ -1,25 +1,24 @@
-// ------------------------------------------------ Borrow.h ----------------------------------------------------------
-// John Fitzgerald, Christine Sutton CSS343 A 
-// Date of Creation: 11-24-16
-// Date of Last Modification: 11-24-16
-// --------------------------------------------------------------------------------------------------------------------
-// Purpose: 
-// --------------------------------------------------------------------------------------------------------------------
-#ifndef BORROW_H
-#define BORROW_H
-#include <iostream>
+#ifndef BORROW_H_INCLUDED
+#define BORROW_H_INCLUDED
+
 #include "Transaction.h"
 #include "MediaLibrary.h"
+#include "CustomerRecords.h"
+
+
 using namespace std;
 
 class Borrow : public Transaction
 {
 public:
-	Borrow();							// default constructor
-	Borrow(string&, MediaLibrary&);
-	~Borrow();							// destructor
+	// constructors
+	Borrow(MediaLibrary &lib, CustomerRecords custTable, string custId, char media, char genre, string title, string dir, string actorFirst, 
+		string actorLast, int month, int yr);
+	~Borrow();
 
 private:
-	void doTransaction();
+	void doTransaction(MediaLibrary &lib, CustomerRecords custTable, string custId, char media, char genre, string title, string dir, 
+		string actorFirst, string actorLast, int month, int yr);
+
 };
-#endif
+#endif //BORROW_H_INCLUDED

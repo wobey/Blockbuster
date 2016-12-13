@@ -20,7 +20,7 @@ public:
 	MediaLibrary();								// default constructor
 	~MediaLibrary();							// destructor
 
-	Movie* search(int, int, string, string);
+	Movie* search(int, int, string, string, string);
 
 private:
 

@@ -1,25 +1,24 @@
-// ------------------------------------------------ Return.h ----------------------------------------------------------
-// John Fitzgerald, Christine Sutton CSS343 A 
-// Date of Creation: 11-24-16
-// Date of Last Modification: 11-24-16
-// --------------------------------------------------------------------------------------------------------------------
-// Purpose: 
-// --------------------------------------------------------------------------------------------------------------------
-#ifndef RETURN_H
-#define RETURN_H
-#include <iostream>
+#ifndef RETURN_H_INCLUDED
+#define RETURN_H_INCLUDED
+
 #include "Transaction.h"
 #include "MediaLibrary.h"
+#include "CustomerRecords.h"
+
 using namespace std;
 
 class Return : public Transaction
 {
 public:
-	Return();							// default constructor
-	Return(string&, MediaLibrary&);
-	~Return();							// destructor
+	//constructors
+	Return(MediaLibrary &lib, CustomerRecords custTable, string custId, char media, char genre, string title, string dir, string actorFirst,
+		string actorLast, int month, int yr);
+	~Return();
 
 private:
-	void doTransaction();
+	//other
+	void doTransaction(MediaLibrary &lib, CustomerRecords custTable, string custId, char media, char genre, string title, string dir,
+		string actorFirst, string actorLast, int month, int yr);
+
 };
-#endif
+#endif //RETURN_H_INCLUDED

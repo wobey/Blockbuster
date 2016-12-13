@@ -1,36 +1,44 @@
-// ------------------------------------------------ CustomerRecords.h ----------------------------------------------------------
-// John Fitzgerald, Christine Sutton CSS343 A 
-// Date of Creation: 11-24-16
-// Date of Last Modification: 11-24-16
-// --------------------------------------------------------------------------------------------------------------------
-// Purpose: 
-// --------------------------------------------------------------------------------------------------------------------
-#ifndef CUSTOMERRECORDS_H
-#define CUSTOMERRECORDS_H
+#ifndef CUSTOMERRECORDS_H_INCLUDED
+#define CUSTOMERRECORDS_H_INCLUDED
+
 #include <iostream>
-#include "Customer.h"
+
 #include "HashTable.h"
+#include "Customer.h"
+
 using namespace std;
 
 class CustomerRecords
 {
-public:
-	CustomerRecords();							// default constructor
-	CustomerRecords(const CustomerRecords&);
-	~CustomerRecords();							// destructor
+	friend ostream& operator<<(ostream& output, const CustomerRecords cusrec);
 
-	CustomerRecords& operator=(const CustomerRecords&);
+public:
+	//constructors
+	CustomerRecords();
+	CustomerRecords(const CustomerRecords&);
+	~CustomerRecords();
+
+	//assigns
+	CustomerRecords operator=(const CustomerRecords&);
+
+	//comparitors
 	bool operator==(const CustomerRecords&);
 	bool operator!=(const CustomerRecords&);
-	bool insert(const Customer&);
-	bool remove(const Customer&);
-	Customer* find(const string&) const;
-	Customer* retrieve(const Customer&) const;
+
+	//modifiers
+	void insert(Customer*);
+	void remove(const Customer&);
+	Customer* find(string custId) const;
+	Customer retrieve(const int) const;
+
+	//other
 	bool isEmpty() const;
 	int size() const;
 	void clear();
 
 private:
-	HashTable<Customer> customers;
+	//data
+	HashTable<Customer> table;
+
 };
-#endif
+#endif //CUSTOMERRECORDS_H_INCLUDED

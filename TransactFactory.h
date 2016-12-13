@@ -1,21 +1,13 @@
-// ------------------------------------------------ TransactFactory.h ----------------------------------------------------------
-// John Fitzgerald, Christine Sutton CSS343 A 
-// Date of Creation: 11-24-16
-// Date of Last Modification: 11-24-16
-// --------------------------------------------------------------------------------------------------------------------
-// Purpose: 
-// --------------------------------------------------------------------------------------------------------------------
-#ifndef TRANSACTFACTORY_H
-#define TRANSACTFACTORY_H
-#include <iostream>
-using namespace std;
+#include "Transaction.h"
+#include "Borrow.h"
+#include "History.h"
+#include "Inventory.h"
+#include "Return.h"
 
+#pragma once
 class TransactFactory
 {
 public:
-	TransactFactory();							// default constructor
-	~TransactFactory();							// destructor
-
-	static string CreateTransaction(string&);
+	static Transaction* makeTransaction(MediaLibrary &lib, char type, int custId, char media, char genre, string title, string dir, string actorFirst, string actorLast, int month, int yr);
 };
-#endif
+

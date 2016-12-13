@@ -1,42 +1,44 @@
-// ------------------------------------------------ Customer.h ----------------------------------------------------------
-// John Fitzgerald, Christine Sutton CSS343 A 
-// Date of Creation: 11-24-16
-// Date of Last Modification: 11-24-16
-// --------------------------------------------------------------------------------------------------------------------
-// Purpose: 
-// --------------------------------------------------------------------------------------------------------------------
-#ifndef CUSTOMER_H
-#define CUSTOMER_H
+#ifndef CUSTOMER_H_INCLUDED
+#define CUSTOMER_H_INCLUDED
+
 #include <iostream>
-#include <fstream>
+
 #include "MediaLibrary.h"
-#include "TransactionHistory.h"
+//#include "TransactionHistory.h"
+
 using namespace std;
 
 class Customer
 {
-	friend ostream& operator<<(ostream& ostream, const Customer& rhs);
+	friend ostream& operator<<(ostream& output, const Customer cust);
 
 public:
-	Customer();								// default constructor
-	Customer(string, string, string);
-	Customer(const Customer&);
-	~Customer();							// destructor
+	Customer();
+	Customer(string custID, string last, string first);
+	~Customer();
 
+	//Getters
 	string getID() const;
 	string getFirstName() const;
 	string getLastName() const;
 
+	//Overloads
+	Customer operator=(const Customer&);
+
+	//Other
 	int hash() const;
-	Customer& operator=(const Customer&);
-	bool operator==(const Customer&);
-	bool operator!=(const Customer&);
+	bool insertRental(char media, char genre, string title,
+		string dir, string actorFirst, string actorLast, int month, int yr);
+	Movie* searchRentals(int, int, string, string, string);
+	bool deleteRental(Movie*);
 
 private:
+	//data
 	string id;
-	string firstName;
 	string lastName;
-	//MediaLibrary rentals;
+	string firstName;
+	MediaLibrary rentals;
 	//TransactionHistory history;
+
 };
-#endif
+#endif //CUSTOMER_H_INCLUDED

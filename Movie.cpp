@@ -1,4 +1,4 @@
-//#include "stdafx.h"
+#include "stdafx.h"
 #include "Movie.h"
 
 
@@ -97,6 +97,26 @@ bool Movie::operator==(const Movie &mov)
 bool Movie::operator!=(const Movie &mov)
 {
 	return ((this->stock != mov.stock) || (this->year != mov.year) || (this->title != mov.title) || (this->director != mov.director));
+}
+
+bool Movie::decreaseStock()
+{
+	if (stock > 0)
+	{
+		stock--;
+		return true;
+	}
+	else
+	{
+		cout << "Insufficient stock to check out: " << getTitle() << endl;
+		return false;
+	}
+}
+
+bool Movie::increaseStock()
+{
+	stock++;
+	return true;
 }
 
 ostream& operator<<(ostream& output, const Movie &mov)

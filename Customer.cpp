@@ -1,3 +1,4 @@
+#include "stdafx.h"
 // ------------------------------------------------ Customer.cpp ----------------------------------------------------------
 // John Fitzgerald, Christine Sutton CSS343 A 
 // Date of Creation: 12-11-16
@@ -12,10 +13,11 @@
 Customer::Customer()
 { }
 
+
 //---------------------------- Constructor -------------------------------------
 // creates a customer
 Customer::Customer(string idNum, string last, string first)
-{ 
+{
 	id = idNum;
 	lastName = last;
 	firstName = first;
@@ -24,8 +26,7 @@ Customer::Customer(string idNum, string last, string first)
 //---------------------------- DefaultDestructor -------------------------------------
 // destructor
 Customer::~Customer()
-{ 
-
+{
 }
 
 //---------------------------- hash -------------------------------------
@@ -60,6 +61,30 @@ string Customer::getLastName() const
 string Customer::getID() const
 {
 	return id;
+}
+
+Customer Customer::operator=(const Customer &cust)
+{
+	id = cust.id;
+	lastName = cust.lastName;
+	firstName = cust.firstName;
+	MediaLibrary rentals(cust.rentals);
+	return *this;
+}
+
+bool Customer::insertRental(char media, char genre, string title, string dir, string actorFirst, string actorLast, int month, int yr)
+{
+	return false;
+}
+
+Movie * Customer::searchRentals(int, int, string, string, string)
+{
+	return nullptr;
+}
+
+bool Customer::deleteRental(Movie *moviePtr)
+{
+	return false;
 }
 
 //---------------------------- operator << -------------------------------------
