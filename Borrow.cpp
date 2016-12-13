@@ -1,4 +1,4 @@
-#include "stdafx.h"
+//#include "stdafx.h"
 #include "Borrow.h"
 
 Borrow::Borrow(MediaLibrary &lib, CustomerRecords custTable, string custId, char media, char genre, string title, string dir,

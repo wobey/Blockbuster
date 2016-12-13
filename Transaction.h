@@ -13,8 +13,8 @@ using namespace std;
 class Transaction
 {
 public:
-	Transaction();							// default constructor
-	virtual ~Transaction();					// destructor
+	Transaction() {}							// default constructor
+	virtual ~Transaction() {}					// destructor
 
 	virtual void doTransaction() = 0;
 };

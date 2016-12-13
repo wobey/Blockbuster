@@ -1,4 +1,4 @@
-#include "stdafx.h"
+//#include "stdafx.h"
 // ------------------------------------------------ Customer.cpp ----------------------------------------------------------
 // John Fitzgerald, Christine Sutton CSS343 A 
 // Date of Creation: 12-11-16
@@ -25,13 +25,11 @@ Customer::Customer(string idNum, string last, string first)
 
 //---------------------------- DefaultDestructor -------------------------------------
 // destructor
-Customer::~Customer()
-{
-}
+Customer::~Customer() { }
 
 //---------------------------- hash -------------------------------------
 // returns a hash based on each of the customer's id numbers
-int Customer::hash() const
+int Customer::hash(string id)
 {
 	string keyID = id;
 	int hashValue = 0;
@@ -79,22 +77,10 @@ bool Customer::insertRental(char media, char genre, string title, string dir, st
 
 Movie * Customer::searchRentals(int, int, string, string, string)
 {
-	return nullptr;
+	return NULL;// nullptr;
 }
 
 bool Customer::deleteRental(Movie *moviePtr)
 {
 	return false;
-}
-
-//---------------------------- operator << -------------------------------------
-// displays customer information
-ostream& operator<<(ostream& ostream, const Customer& rhs)
-{
-	ostream << "Cusomer Name: " << rhs.getFirstName() << " " << rhs.getLastName() << " ";
-	ostream << "ID: " << rhs.getID() << endl;
-
-	// TODO: output customers rental history
-
-	return ostream;
 }

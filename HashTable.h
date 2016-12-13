@@ -9,6 +9,7 @@
 #define HASHTABLE_H
 #include <iostream>
 #include <fstream>
+#include "Customer.h"	// need for g++
 using namespace std;
 
 static const int MAX_BUCKETS = 997;
@@ -21,22 +22,19 @@ class HashTable
 
 public:
 	HashTable();							// default constructor
-	//HashTable(const HashTable<T>&);
 	~HashTable();							// destructor
-
-	//HashTable& operator=(const HashTable<T>&);
-	//bool operator==(const HashTable<T>&);
-	//bool operator!=(const HashTable<T>&);
 	
-	int getHash(T*) const;
+	int getHash(const T*) const;
 	bool insert(T*);
-	//bool remove(const T&);
+	//bool erase(T*);		// never used
+	bool entryExists(const string) const;
+	bool entryExists(const T*) const;
 	//int find(const T&) const;
-	//T* retrieve(const T&) const;
-	//bool isEmpty() const;
-	//int size() const;
-	//void clear();
-	//int hash(T&, int);
+	T* retrieve(const string);
+	T* retrieve(const T*);
+	bool isEmpty() const;
+	int getNumEntries() const;
+	void clear();
 
 protected:
 	struct Node
@@ -46,9 +44,9 @@ protected:
 		Node* next;					// pointer to next array Node
 	};
 
-	Node** table;
-	int tableSize;
-	int numberOfEntries;
+	Node** table;					// the hash table
+	int tableSize;					// the size of the hash table array
+	int numberOfEntries;			// the number of entries in the hash table
 };
 #endif
 
@@ -68,33 +66,26 @@ HashTable<T>::HashTable()
 	}
 }
 
+//---------------------------- destructor -------------------------------------
+// deletes contents of hash table by calling clear()
 template <class T>
 HashTable<T>::~HashTable()
 {
-	for (int i = 0; i < tableSize; i++)
-	{
-		if (table[i] != NULL)
-		{
-			//cout << "i: " << *table[i]->data << endl;
-
-			delete table[i]->data;
-			table[i]->data = NULL;
-			table[i]->next = NULL;
-
-			delete table[i];
-			table[i] = NULL;
-		}
-	}
-
-	delete[]* table;
+	clear();
 }
 
+//---------------------------- getHash -------------------------------------
+// returns the hash key of the item
 template<class T>
-int HashTable<T>::getHash(T* keyValue) const
+int HashTable<T>::getHash(const T* keyValue) const
 {
-	return keyValue->hash() % tableSize;
+	string key = keyValue->getID();
+
+	return keyValue->hash(key) % tableSize;
 }
 
+//---------------------------- insert -------------------------------------
+// insert an item into the hash table
 template<class T>
 bool HashTable<T>::insert(T* customer)
 {
@@ -105,13 +96,118 @@ bool HashTable<T>::insert(T* customer)
 	int index = getHash(customer);
 	newNode->key = index;
 
-	// TODO: if occupied decide on collision resolution
+	// TODO: if occupied decide on collision resolution (not necessary for submission)
 
 	table[index] = newNode;
+	numberOfEntries++;
 
 	return true;
 }
 
+//---------------------------- erase -------------------------------------
+// erases an item from the hash table
+//template<class T>
+//bool HashTable<T>::erase(T* customer)
+//{
+//
+//	numberOfEntries--;
+//	return true;
+//}
+
+//---------------------------- entryExists -------------------------------------
+// determines if the user id is contained in the hash table using a string
+template<class T>
+bool HashTable<T>::entryExists(const string key) const
+{
+	int hashIndex = Customer::hash(key) % tableSize;
+
+	if (table[hashIndex] != NULL)
+		return true;
+	else
+		return false;
+}
+
+//---------------------------- entryExists -------------------------------------
+// determines if the user id is contained in the hash table using customer object
+template<class T>
+bool HashTable<T>::entryExists(const T* customer) const
+{
+	if (table[getHash(customer)] != NULL)
+		return true;
+	else
+		return false;
+}
+
+//---------------------------- retrieve -------------------------------------
+// returns pointer to entry
+template<class T>
+T* HashTable<T>::retrieve(const string key)
+{
+	string keyID = key;
+	int hashValue = 0;
+
+	for (int i = 0; i < keyID.size(); i++)
+		hashValue += keyID[i];
+
+	if (table[hashValue] != NULL)
+		return table[hashValue]->data;
+	else
+		return NULL;
+}
+
+//---------------------------- retrieve -------------------------------------
+// returns pointer to entry using customer object
+template<class T>
+T* HashTable<T>::retrieve(const T* customer)
+{
+	if (table[getHash(customer)] != NULL)
+		return table[getHash(customer)]->data;
+	else
+		return NULL;
+}
+
+//---------------------------- isEmpty -------------------------------------
+// determines if the hash table has any entries in it
+template<class T>
+bool HashTable<T>::isEmpty() const
+{
+	if (getNumEntries() == 0)
+		return true;
+	else
+		return false;
+}
+
+//---------------------------- getNumEntries -------------------------------------
+// returns the number of entries in the hash table
+template<class T>
+int HashTable<T>::getNumEntries() const
+{
+	return numberOfEntries;
+}
+
+//---------------------------- clear -------------------------------------
+// clears all entries from the hash table
+template<class T>
+void HashTable<T>::clear()
+{
+	for (int i = 0; i < tableSize; i++)
+	{
+		if (table[i] != NULL)
+		{
+			delete table[i]->data;
+			table[i]->data = NULL;
+			table[i]->next = NULL;
+
+			delete table[i];
+			table[i] = NULL;
+		}
+	}
+
+	delete[] table;
+}
+
+//---------------------------- operator<< -------------------------------------
+// displays the contents of the hash tables
 template <class T1>
 std::ostream& operator<<(ostream& ostream, const HashTable<T1>& rhs)
 {
