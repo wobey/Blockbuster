@@ -17,18 +17,18 @@ bool MediaLibrary::insert(char media, char genre, string title, string dir, stri
 {
 	if (genre == 'D')
 	{
-		Drama dMovie(1, yr, title, dir);
-		dramas->insert(&dMovie);
+		Drama *cPtr = new Drama(1, yr, title, dir);
+		dramas->insert(cPtr, dir, title);
 	}
 	else if (genre == 'F')
 	{
 		Comedy *cPtr = new Comedy(1, yr, title, dir);
-		comedies->insert(cPtr);
+		comedies->insert(cPtr, title, std::to_string(yr));
 	}
 	else
 	{
 		Classic *cPtr = new Classic(1, yr, title, dir, actorFirst, actorLast, month);
-		classics->insert(cPtr);
+		classics->insert(cPtr, std::to_string(yr), actorLast);		// TODO: update year to release date and actor to full name (a mashup of month and year?)
 	}
 	
 	return true;
@@ -36,7 +36,7 @@ bool MediaLibrary::insert(char media, char genre, string title, string dir, stri
 
 bool MediaLibrary::deleteMovie(Movie *ptr)
 {
-	
+	return true;
 }
 
 MediaLibrary::~MediaLibrary()
