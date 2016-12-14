@@ -1,4 +1,4 @@
-//#include "stdafx.h"
+#include "stdafx.h"
 #include "Movie.h"
 
 
@@ -11,7 +11,7 @@ Movie::Movie()
 }
 
 
-Movie::Movie(int ct, int yr, string name, string dir)
+Movie::Movie(int ct, string yr, string name, string dir)
 {
 	stock = ct;
 	year = yr;
@@ -33,7 +33,7 @@ int Movie::getStock()
 	return stock;
 }
 
-int Movie::getYear()
+string Movie::getYear()
 {
 	return year;
 }
@@ -53,7 +53,7 @@ void Movie::setStock(int s)
 	stock = s;
 }
 
-void Movie::setYear(int y)
+void Movie::setYear(string y)
 {
 	year = y;
 }

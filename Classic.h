@@ -13,12 +13,11 @@ class Classic : public Movie
 
 public:
 	//constructors
-	Classic(int ct, int yr, string name, string dir, string actorFirst, string actorLast, int mon);
+	Classic(int ct, string yr, string name, string dir, string actorFirst, string actorLast, string mon);
 	~Classic();
 
 	//assignment
 	Classic operator=(Classic&);
-	Classic operator+(int);
 
 	//comparison
 	bool operator==(Classic&);
@@ -28,17 +27,17 @@ public:
 	//get and set
 	string getActorFirst();
 	string getActorLast();
-	int getMonth();
+	string getMonth();
 
 	void setActorFirst(string);
 	void setActorLast(string);
-	void setMonth(int);
+	void setMonth(string);
 
 private:
 	//data
 	string actorFirst;
 	string actorLast;
-	int month;
+	string month;
 
 };
 #endif// CLASSIC_H_INCLUDED

@@ -13,7 +13,7 @@ class Drama : public Movie
 
 public:
 	//constructors
-	Drama(int ct, int yr, string name, string dir);
+	Drama(int ct, string yr, string name, string dir);
 	Drama(const Drama&);
 	~Drama();
 

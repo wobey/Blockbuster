@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "Borrow.h"
 
-Borrow::Borrow(MediaLibrary &lib, CustomerRecords *custTable, string custId, char media, char genre, string title, string dir,
-	string actorFirst, string actorLast, int month, int yr)
+Borrow::Borrow(MediaLibrary &lib, CustomerRecords *custTable, string custId, string media, string genre, string title, string dir,
+	string actorFirst, string actorLast, string month, string yr)
 {
 	doTransaction(lib, custTable, custId, media, genre, title, dir, actorFirst, actorLast, month, yr);
 }
@@ -11,8 +11,8 @@ Borrow::~Borrow()
 {
 }
 
-void Borrow::doTransaction(MediaLibrary &lib, CustomerRecords *custTable, string custId, char media, char genre, string title, 
-	string dir, string actorFirst, string actorLast, int month, int yr)
+void Borrow::doTransaction(MediaLibrary &lib, CustomerRecords *custTable, string custId, string media, string genre, string title,
+	string dir, string actorFirst, string actorLast, string month, string yr)
 {
 
 	//Search for the movie in stock

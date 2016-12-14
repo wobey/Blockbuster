@@ -1,8 +1,8 @@
-//#include "stdafx.h"
+#include "stdafx.h"
 #include "Classic.h"
 
 
-Classic::Classic(int ct, int yr, string name, string dir, string first, string last, int mon): Movie(ct, yr, name, dir)
+Classic::Classic(int ct, string yr, string name, string dir, string first, string last, string mon): Movie(ct, yr, name, dir)
 {
 	setStock(ct);
 	setYear(yr);
@@ -27,7 +27,7 @@ string Classic::getActorLast()
 	return actorLast;
 }
 
-int Classic::getMonth()
+string Classic::getMonth()
 {
 	return month;
 }
@@ -42,7 +42,7 @@ void Classic::setActorLast(string actlast)
 	actorLast = actlast;
 }
 
-void Classic::setMonth(int mon)
+void Classic::setMonth(string mon)
 {
 	month = mon;
 }

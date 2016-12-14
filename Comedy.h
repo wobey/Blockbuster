@@ -13,7 +13,7 @@ class Comedy : public Movie
 
 public:
 	//constructors
-	Comedy(int ct, int yr, string name, string dir);
+	Comedy(int ct, string yr, string name, string dir);
 	Comedy(const Comedy&);
 	~Comedy();
 

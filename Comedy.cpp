@@ -1,9 +1,9 @@
-//#include "stdafx.h"
+#include "stdafx.h"
 #include "Comedy.h"
 
 
 
-Comedy::Comedy(int ct, int yr, string name, string dir): Movie(ct, yr, name, dir)
+Comedy::Comedy(int ct, string yr, string name, string dir): Movie(ct, yr, name, dir)
 {
 } //end Comedy
 

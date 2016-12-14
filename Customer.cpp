@@ -72,7 +72,7 @@ Customer Customer::operator=(const Customer &cust)
 	return *this;
 }
 
-bool Customer::insertRental(char media, char genre, string title, string dir, string actorFirst, string actorLast, int month, int yr)
+bool Customer::insertRental(string media, string genre, string title, string dir, string actorFirst, string actorLast, string month, string yr)
 {
 	//Check if customer has a copy of this movie
 	//If not, insert new movie
@@ -91,7 +91,7 @@ bool Customer::insertRental(char media, char genre, string title, string dir, st
 	return true;
 }
 
-Movie *Customer::searchRentals(char genre, int month, int yr, string title, string dir, string actorLast)
+Movie *Customer::searchRentals(string genre, string month, string yr, string title, string dir, string actorLast)
 {	
 	Movie *findMovie = rentals.search(genre, month, yr, title, actorLast, dir);
 	return findMovie;

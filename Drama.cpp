@@ -1,8 +1,8 @@
-//#include "stdafx.h"
+#include "stdafx.h"
 #include "Drama.h"
 
 
-Drama::Drama(int ct, int yr, string name, string dir): Movie(ct, yr, name, dir)
+Drama::Drama(int ct, string yr, string name, string dir): Movie(ct, yr, name, dir)
 {
 } //end Drama()
 

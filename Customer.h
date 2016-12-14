@@ -28,9 +28,9 @@ public:
 
 	//Other
 	static int hash(string) ;
-	bool insertRental(char media, char genre, string title,
-		string dir, string actorFirst, string actorLast, int month, int yr);
-	Movie* searchRentals(char, int, int, string, string, string);
+	bool insertRental(string media, string genre, string title,
+		string dir, string actorFirst, string actorLast, string month, string yr);
+	Movie* searchRentals(string, string, string, string, string, string);
 	bool deleteRental(Movie*);
 
 private:

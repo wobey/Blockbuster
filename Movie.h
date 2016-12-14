@@ -13,18 +13,18 @@ class Movie
 public:
 	//constructors
 	Movie();
-	Movie(int ct, int yr, string name, string dir);
+	Movie(int ct, string yr, string name, string dir);
 	Movie(const Movie&);
 	virtual ~Movie();
 
 	//getters and setters
 	int getStock();
-	int getYear();
+	string getYear();
 	string getTitle();
 	string getDirector();
 
 	void setStock(int);
-	void setYear(int);
+	void setYear(string);
 	void setTitle(string);
 	void setDirector(string);
 
@@ -43,7 +43,7 @@ public:
 private:
 	//data
 	int stock;
-	int year;
+	string year;
 	string title;
 	string director;
 

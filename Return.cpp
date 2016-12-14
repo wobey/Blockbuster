@@ -2,8 +2,8 @@
 #include "Return.h"
 
 
-Return::Return(MediaLibrary & lib, CustomerRecords *custTable, string custId, char media, char genre, string title, string dir,
-	string actorFirst, string actorLast, int month, int yr)
+Return::Return(MediaLibrary & lib, CustomerRecords *custTable, string custId, string media, string genre, string title, string dir,
+	string actorFirst, string actorLast, string month, string yr)
 {
 	doTransaction(lib, custTable, custId, media, genre, title, dir, actorFirst, actorLast, month, yr);
 }
@@ -12,8 +12,8 @@ Return::~Return()
 {
 }
 
-void Return::doTransaction(MediaLibrary &lib, CustomerRecords *custTable, string custId, char media, char genre, string title, 
-	string dir, string actorFirst, string actorLast, int month, int yr)
+void Return::doTransaction(MediaLibrary &lib, CustomerRecords *custTable, string custId, string media, string genre, string title,
+	string dir, string actorFirst, string actorLast, string month, string yr)
 {
 	//Search for customer
 	Customer *custPtr = custTable->find(custId);
