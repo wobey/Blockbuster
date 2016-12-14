@@ -5,21 +5,30 @@
 // --------------------------------------------------------------------------------------------------------------------
 // Purpose: 
 // --------------------------------------------------------------------------------------------------------------------
-#ifndef SCANNER_H
-#define SCANNER_H
+#ifndef SCANNERS_H
+#define SCANNERS_H
 #include <iostream>
 #include <list>
 #include <fstream>
+#include "CustomerScanner.h"
+#include "MediaScanner.h"
+#include "TransactionScanner.h"
 using namespace std;
 
-template <typename T>
-class Scanner
+class Scanners
 {
 public:
-	Scanner();				// default constructor
-	virtual ~Scanner();		// destructor
+	Scanners() { }
+	Scanners(fstream&, fstream&, fstream&);			// constructor
+	~Scanners();		// destructor
+
+	void readFiles(fstream&, fstream&, fstream&);
 
 private:
-	virtual void readFile(list<T>&, ifstream&);	// TODO: pure virtual???
+	bool readFile(fstream&, string);
+
+	CustomerScanner customerScanner;
+	MediaScanner mediaScanner;
+	TransactionScanner transactionScanner;
 };
 #endif

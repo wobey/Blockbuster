@@ -10,19 +10,19 @@
 #include <iostream>
 #include <list>
 #include <fstream>
-#include "Scanner.h"
 #include "CustomerRecords.h"
 using namespace std;
 
-class CustomerScanner : public Scanner<Customer>
+class CustomerScanner
 {
 public:
-	CustomerScanner(CustomerRecords&);			// default constructor
-	~CustomerScanner();							// destructor
+	CustomerScanner() {}				// default constructor
+	CustomerScanner(ifstream&);			// constructor
+	~CustomerScanner();					// destructor
 
 private:
-	CustomerRecords* customers;
+	CustomerRecords customers;
 
-	void readFile(list<Customer>&, ifstream&);		// TODO: pass in a list???
+	void readFile(ifstream&);		
 };
 #endif

@@ -10,19 +10,19 @@
 #include <iostream>
 #include <list>
 #include <fstream>
-#include "Scanner.h"
 #include "TransactionHistory.h"
 using namespace std;
 
-class TransactionScanner : public Scanner<string>
+class TransactionScanner
 {
 public:
-	TransactionScanner(TransactionHistory&);		// default constructor
-	~TransactionScanner();							// destructor
+	TransactionScanner() {}				// default constructor
+	TransactionScanner(ifstream&);		// constructor
+	~TransactionScanner();				// destructor
 
 private:
-	TransactionHistory* transactions;
+	TransactionHistory transactions;
 
-	void readFile(list<string>&, ifstream&);		// TODO: pass in a list???
+	void readFile(ifstream&);		
 };
 #endif
