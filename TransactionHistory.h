@@ -15,8 +15,8 @@ using namespace std;
 class TransactionHistory
 {
 public:
-	TransactionHistory();							// default constructor
-	TransactionHistory(const TransactionHistory&);		
+	TransactionHistory() {}							// default constructor
+	TransactionHistory(const TransactionHistory&);	// constructor
 	~TransactionHistory();							// destructor
 	
 	bool operator==(const TransactionHistory&);
@@ -31,6 +31,6 @@ public:
 	void clear();
 
 private:
-	list<string> transactHistory;
+	list<string> transactionHistory;
 };
 #endif

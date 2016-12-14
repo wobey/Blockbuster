@@ -11,23 +11,33 @@
 //---------------------------------------------------------------------------
 
 #include <iostream>
-#include "HashTable.h"
-#include "Customer.h"
-#include "BSTree.h"
-#include "Classic.h"
-#include "Comedy.h"
-#include "Drama.h"
+//#include "HashTable.h"
+//#include "Customer.h"
+//#include "BSTree.h"
+//#include "Classic.h"
+//#include "Comedy.h"
+//#include "Drama.h"
+
+#include "Scanners.h"
 using namespace std;
+
+void readFiles();
 
 int main()
 {
 	// ******************************************************
+	//				  ACTUAL SUBMISSION
+	// ******************************************************
+	readFiles();
+
+
+	// ******************************************************
 	//					 BSTREE TEST
 	// ******************************************************
 
-	BSTree<Classic> classics;
-	BSTree<Comedy> comedies;
-	BSTree<Drama> dramas;
+	//BSTree<Classic> classics;
+	//BSTree<Comedy> comedies;
+	//BSTree<Drama> dramas;
 	//Classic* classic;
 	//Comedy* comedy;
 
@@ -37,19 +47,21 @@ int main()
 	//	return 1;
 	//}
 
-	int stock, ryear, rmonth;
-	string line, type, title, dir, actorFirst, actorLast;
-	Drama* drama1;
-	Drama* drama2;
-	Drama* drama3;
+	//int stock, ryear, rmonth;
+	//string line, type, title, dir, actorFirst, actorLast;
+	//Drama* drama1;
+	//Drama* drama2;
+	//Drama* drama3;
 
-	drama1 = new Drama(10, 1995, "Bob's Burgers", "Pete and Pete");
-	drama2 = new Drama(8, 2001, "Hand", "Das Boot");
-	drama3 = new Drama(7, 1921, "Cup", "Vertical");
+	//drama1 = new Drama(10, 1995, "Bob's Burgers", "Pete and Pete");
+	//drama2 = new Drama(8, 2001, "Hand", "Das Boot");
+	//drama3 = new Drama(7, 1921, "Cup", "Vertical");
 
-	dramas.insert(drama1, "Pete and Pete", "Bob's Burgers");
-	dramas.insert(drama2, "Das Boot", "Hand");
-	dramas.insert(drama3, "Vertical", "Cup");
+	//dramas.insert(drama1, "Pete and Pete", "Bob's Burgers");
+	//dramas.insert(drama2, "Das Boot", "Hand");
+	//dramas.insert(drama3, "Vertical", "Cup");
+
+	//cout << dramas << endl;
 
 	//while (getline(infile1, line, ','))
 	//{
@@ -120,4 +132,24 @@ int main()
 	//cout << *customer << endl;
 	
 	return 0;
+}
+
+void readFiles()
+{
+	fstream infile1("data4customers.txt");
+	if (!infile1) {
+		cout << "data4customers.txt could not be opened." << endl;
+	}
+
+	fstream infile2("data4movies.txt");
+	if (!infile2) {
+		cout << "data4movies.txt could not be opened." << endl;
+	}
+
+	fstream infile3("data4commands.txt");
+	if (!infile3) {
+		cout << "data4commands.txt could not be opened." << endl;
+	}
+
+	Scanners fileInput = Scanners(infile1, infile2, infile3);
 }

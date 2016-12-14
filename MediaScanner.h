@@ -10,19 +10,19 @@
 #include <iostream>
 #include <list>
 #include <fstream>
-#include "Scanner.h"
 #include "MediaLibrary.h"
 using namespace std;
 
-class MediaScanner : public Scanner<MediaLibrary>
+class MediaScanner
 {
 public:
-	MediaScanner(MediaLibrary&);			// default constructor
-	~MediaScanner();						// destructor
+	MediaScanner() {}					// default constructor
+	MediaScanner(ifstream&);			// constructor
+	~MediaScanner();					// destructor
 
 private:
-	MediaLibrary* library;
+	MediaLibrary media;
 
-	void readFile(list<Movie>&, ifstream&);		// TODO: pass in a list???
+	void readFile(ifstream&);	
 };
 #endif

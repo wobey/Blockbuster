@@ -1,4 +1,4 @@
-#include "stdafx.h"
+//#include "stdafx.h"
 #include "CustomerRecords.h"
 
 
@@ -9,7 +9,8 @@ CustomerRecords::CustomerRecords()
 
 CustomerRecords::~CustomerRecords()
 {
-	table->clear();
+	if (table->getNumEntries() > 0)
+		table->clear();
 }
 
 void CustomerRecords::insert(Customer *cust)
@@ -36,4 +37,11 @@ int CustomerRecords::size() const
 void CustomerRecords::clear()
 {
 	table->clear();
+}
+
+ostream& operator<<(ostream& ostream, const CustomerRecords& rhs)
+{
+	ostream << *rhs.table;
+	
+	return ostream;
 }
