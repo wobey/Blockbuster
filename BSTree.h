@@ -29,9 +29,9 @@ public:
 	bool isEmpty() const;					// true if tree is empty, otherwise false
 	void makeEmpty();						// make the tree empty so isEmpty returns true
 	BSTree& operator=(const BSTree&);
+	void print();
 	bool operator==(const BSTree&) const;
 	bool operator!=(const BSTree&) const;
-
 	bool insert(T*, string, string);
 	bool retrieve(const T&, T*&);
 	void displaySideways() const;			// provided below, displays the tree sideways
@@ -58,8 +58,8 @@ private:
 	Node* copyTree(const Node*, Node*);
 	bool testEqual(const Node*, const Node*) const;
 	void makeEmpty(Node*);
-	void displayInOrder(const Node*, ostream&) const;
 	bool retrieve(const T&, T*&, const Node*);
+	void displayInOrder(const Node*) const;
 	//void getHeight_FindNode(const NodeData<T>&, Node*&, Node*) const;
 	//int getHeight(const NodeData<T>&, Node*&) const;
 	//void bstreetoArray(NodeData<T>*[], Node*, int&);
@@ -140,6 +140,12 @@ void BSTree<T>::makeEmpty()
 	makeEmpty(root);
 	root = NULL;
 	numNodes = 0;
+}
+
+template <class T>
+void BSTree<T>::print()
+{
+	displayInOrder(root);
 }
 
 //---------------------------- makeEmpty -------------------------------------
@@ -496,14 +502,14 @@ void BSTree<T>::sideways(Node* current, int level) const {
 //-------------------------- displayInOrder --------------------------------------
 // a helper function for the stream operator to output in-order BST
 template <class T>
-void BSTree<T>::displayInOrder(const Node* currNode, ostream& output) const
+void BSTree<T>::displayInOrder(const Node* currNode) const
 {
 	// in-order traversal
-	if (currNode)
+	if(currNode)
 	{
-		displayInOrder(currNode->left, output);
-		output << *currNode->data << " ";
-		displayInOrder(currNode->right, output);
+		displayInOrder(currNode->left);
+		cout << *currNode->data << endl;
+		displayInOrder(currNode->right);
 	}
 }
 
