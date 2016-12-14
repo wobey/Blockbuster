@@ -28,3 +28,10 @@ bool Scanners::readFile(fstream& fstream, string type)
 
 	return true;
 }
+
+ostream& operator<<(ostream& ostream, const Scanners& scanner)
+{
+	// TODO finish stream operator
+
+	return ostream;
+}

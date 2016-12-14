@@ -10,7 +10,8 @@ using namespace std;
 
 class Scanners
 {
-	friend ostream& operator<<(ostream& output, const Scanners com);
+	// TODO make Scanners com 
+	friend ostream& operator<<(ostream&, const Scanners&);
 
 public:
 	//constructors
