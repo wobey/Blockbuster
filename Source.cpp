@@ -152,6 +152,4 @@ void readFiles()
 	}
 
 	Scanners fileInput = Scanners(infile1, infile2, infile3);
-	
-	//fileInput.readFiles(infile1, infile2, infile3);
 }

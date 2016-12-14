@@ -11,7 +11,7 @@ using namespace std;
 
 class Customer
 {
-	friend ostream& operator<<(ostream& output, const Customer cust);
+	friend ostream& operator<<(ostream&, const Customer&);
 
 public:
 	Customer();

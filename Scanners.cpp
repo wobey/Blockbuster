@@ -1,4 +1,4 @@
-#include "stdafx.h"
+//#include "stdafx.h"
 #include "Scanners.h"
 
 Scanners::Scanners(fstream& customerFile, fstream& movieFile, fstream& commandFile)
@@ -20,8 +20,8 @@ void Scanners::readFiles(fstream& customerFile, fstream& movieFile, fstream& com
 
 bool Scanners::readFile(fstream& fstream, string type)
 {
-	//if (type == "Customers")
-
+	if (type == "Customers")
+		customerScanner = CustomerScanner(fstream);
 	//if (type == "Movies")
 	//
 	//if (type == "Commands")

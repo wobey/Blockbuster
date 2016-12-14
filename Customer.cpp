@@ -1,4 +1,4 @@
-#include "stdafx.h"
+//#include "stdafx.h"
 // ------------------------------------------------ Customer.cpp ----------------------------------------------------------
 // John Fitzgerald, Christine Sutton CSS343 A 
 // Date of Creation: 12-11-16

@@ -17,12 +17,12 @@ class CustomerScanner
 {
 public:
 	CustomerScanner() {}				// default constructor
-	CustomerScanner(ifstream&);			// constructor
+	CustomerScanner(fstream&);			// constructor
 	~CustomerScanner();					// destructor
 
 private:
 	CustomerRecords customers;
 
-	void readFile(ifstream&);		
+	void readFile(fstream&);		
 };
 #endif
