@@ -9,5 +9,5 @@ using namespace std;
 class MediaFactory
 {
 public:
-	static Movie *createMovie(char type, int stock, string dir, string title, int year, string actorFirst, string actorLast, int rmonth);
+	static Movie *createMovie(string type, int stock, string dir, string title, string year, string actorFirst, string actorLast, string rmonth);
 };

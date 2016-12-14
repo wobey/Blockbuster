@@ -12,6 +12,7 @@ class Borrow : public Transaction
 {
 public:
 	// constructors
+	Borrow() {}
 	Borrow(MediaLibrary &lib, CustomerRecords *custTable, string custId, string media, string genre, string title, string dir, string actorFirst,
 		string actorLast, string month, string yr);
 	~Borrow();

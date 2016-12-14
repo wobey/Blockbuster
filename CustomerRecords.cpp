@@ -4,13 +4,13 @@
 
 CustomerRecords::CustomerRecords()
 {
-	table = new HashTable<Customer>;
+	if (table != NULL)
+		table = new HashTable<Customer>;
 }
 
 CustomerRecords::~CustomerRecords()
 {
-	if (table->getNumEntries() > 0)
-		table->clear();
+	table->clear();
 }
 
 void CustomerRecords::insert(Customer *cust)
@@ -42,6 +42,6 @@ void CustomerRecords::clear()
 ostream& operator<<(ostream& ostream, const CustomerRecords& rhs)
 {
 	ostream << *rhs.table;
-	
+
 	return ostream;
 }

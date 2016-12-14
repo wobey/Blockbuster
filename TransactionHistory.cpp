@@ -1,4 +1,4 @@
-#include "stdafx.h"
+////#include "stdafx.h"
 #include "TransactionHistory.h"
 
 TransactionHistory::TransactionHistory(const TransactionHistory& history)
