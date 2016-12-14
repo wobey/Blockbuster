@@ -40,7 +40,7 @@ public:
 	virtual bool decreaseStock();
 	virtual bool increaseStock();
 
-private:
+protected:
 	//data
 	int stock;
 	string year;

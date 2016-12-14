@@ -1,4 +1,4 @@
-#include "stdafx.h"
+//#include "stdafx.h"
 #include "MediaLibrary.h"
 
 MediaLibrary::MediaLibrary()
@@ -77,6 +77,7 @@ MediaLibrary::~MediaLibrary()
 	dramas->makeEmpty();
 	comedies->makeEmpty();
 
+	// TODO verify with valgrind there are no leaks here
 }
 
 

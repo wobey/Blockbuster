@@ -9,7 +9,7 @@ using namespace std;
 
 class Classic : public Movie
 {
-	friend ostream& operator<<(ostream&, Classic);
+	friend ostream& operator<<(ostream&, const Classic&);
 
 public:
 	//constructors
@@ -34,6 +34,8 @@ public:
 	void setMonth(string);
 
 	void assignClassicCopy(Classic*);
+	bool compareGreater(const Classic*) const;
+	bool compareEqual(const Classic*) const;
 
 private:
 	//data

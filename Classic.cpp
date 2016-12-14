@@ -14,9 +14,7 @@ Classic::Classic(int ct, string yr, string name, string dir, string first, strin
 	classicCopy = NULL;
 } //end Classic
 
-Classic::~Classic()
-{
-} //end ~Classic
+Classic::~Classic() { }
 
 string Classic::getActorFirst()
 {
@@ -46,6 +44,31 @@ void Classic::setActorLast(string actlast)
 void Classic::setMonth(string mon)
 {
 	month = mon;
+}
+
+bool Classic::compareGreater(const Classic* rhs) const
+{
+	// compare year, month, and major actor
+	if (year != rhs->year)
+		return std::stoi(year) > std::stoi(rhs->year);
+	else if (month != rhs->month)
+		return std::stoi(month) > std::stoi(rhs->month);
+
+	string actor1 = actorFirst + actorLast;
+	string actor2 = rhs->actorFirst + rhs->actorLast;
+
+	return (actor1).compare(actor2) > 0;
+}
+
+bool Classic::compareEqual(const Classic* rhs) const
+{
+	string actor1 = actorFirst + actorLast;
+	string actor2 = rhs->actorFirst + rhs->actorLast;
+
+	if (year == rhs->year && (actor1).compare(actor2) == 0 && month == rhs->month)
+		return true;
+	else
+		return false;
 }
 
 Classic Classic::operator=(Classic &cls)

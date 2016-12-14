@@ -9,7 +9,7 @@ using namespace std;
 
 class Drama : public Movie
 {
-	friend ostream& operator<<(ostream& output, Drama &drm);
+	friend ostream& operator<<(ostream&, const Drama&);
 
 public:
 	//constructors
@@ -19,6 +19,9 @@ public:
 
 	// TODO: fix assignClassicCopy to not be required here
 	void assignClassicCopy(Drama*) { }		// only serves to not throw errors in BSTree
+	bool compareGreater(const Drama*) const;
+	bool compareEqual(const Drama*) const;
+
 
 };
 #endif //DRAMA_H_INCLUDED

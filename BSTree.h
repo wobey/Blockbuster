@@ -308,7 +308,7 @@ void BSTree<T>::insert(Node*& currNode, Node*& newNode)
 }
 
 //---------------------------- classicCopy -------------------------------------
-// points each Classic's classicCopy pointer to that of the other Classic with the same Title
+// points each Classic's classicCopy pointer to that of the other Classic with the same title & month + year
 template <class T>
 void BSTree<T>::classicCopy(T*& currNode, T*& newNode)
 {
@@ -321,8 +321,6 @@ void BSTree<T>::classicCopy(T*& currNode, T*& newNode)
 template <class T>
 T* BSTree<T>::retrieve(string first, string second)
 {
-	// determine if first and/or second are valid (some will be blank, bogus, etc. for transactions)
-
 	return retrieve(first, second, root);
 }
 
@@ -331,18 +329,22 @@ T* BSTree<T>::retrieve(string first, string second)
 template <class T>
 T* BSTree<T>::retrieve(string first, string second, const Node* bstNode)
 {
+	// TODO: 
+	// need to search with both first and second criteria
+	// determine if first and/or second are valid (some will be blank, bogus, etc. for transactions)
+
+
 	// the node is not in the BST
-	if (bstNode == NULL)
-		return false;
-	else if (searchData < *bstNode->data)	// search down the left subtree
-		retrieve(searchData, foundPtr, bstNode->left);
-	else if (searchData > *bstNode->data)   // search down the right subtree
-		retrieve(searchData, foundPtr, bstNode->right);
-	else									// the node was found
-	{
-		foundPtr = bstNode->data;
-		return true;
-	}
+	//if (bstNode == NULL)
+	//	return NULL;
+	//else if (first < *bstNode->firstSortCriterion)	// search down the left subtree
+	//	retrieve(first, second, bstNode->left);
+	//else if (first > *bstNode->firstSortCriterion)   // search down the right subtree
+	//	retrieve(first, second, bstNode->right);
+	//else									// the node was found
+	//{
+		return bstNode->data;
+	//}
 }
 
 //------------------------- displaySideways ---------------------------------
@@ -529,7 +531,7 @@ void BSTree<T>::displayInOrder(const Node* currNode) const
 	if(currNode)
 	{
 		displayInOrder(currNode->left);
-		cout << *currNode->data << endl;
+		cout << currNode->data << endl;
 		displayInOrder(currNode->right);
 	}
 }
