@@ -5,13 +5,13 @@
 
 #include "MediaLibrary.h"
 #include "Movie.h"
-//#include "TransactionHistory.h"
+#include "TransactionHistory.h"
 
 using namespace std;
 
 class Customer
 {
-	friend ostream& operator<<(ostream&, const Customer&);
+	friend ostream& operator<<(ostream& output, const Customer cust);
 
 public:
 	Customer();
@@ -32,6 +32,8 @@ public:
 		string dir, string actorFirst, string actorLast, string month, string yr);
 	Movie* searchRentals(string, string, string, string, string, string);
 	bool deleteRental(Movie*);
+	void printHistory();
+	void addHistory(string trans, string title, string dir, string actorFirst, string actorLast, string month, string yr);
 
 private:
 	//data
@@ -39,7 +41,7 @@ private:
 	string lastName;
 	string firstName;
 	MediaLibrary rentals;
-	//TransactionHistory history;
+	TransactionHistory history;
 
 };
 #endif //CUSTOMER_H_INCLUDED

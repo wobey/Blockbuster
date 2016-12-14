@@ -1,4 +1,4 @@
-//#include "stdafx.h"
+#include "stdafx.h"
 #include "Return.h"
 
 
@@ -26,8 +26,7 @@ void Return::doTransaction(MediaLibrary &lib, CustomerRecords *custTable, string
 		{
 			//Delete from customer's rentals
 			custPtr->deleteRental(moviePtr);
-
-			//TODO: Transaction History
+			custPtr->addHistory("Return", title, dir, actorFirst, actorLast, month, yr);
 
 			//Add movie back to library stock
 			Movie *findMovie = lib.search(genre, month, yr, title, dir, actorLast);

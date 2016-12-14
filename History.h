@@ -1,25 +1,20 @@
-// ------------------------------------------------ History.h ----------------------------------------------------------
-// John Fitzgerald, Christine Sutton CSS343 A 
-// Date of Creation: 11-24-16
-// Date of Last Modification: 11-24-16
-// --------------------------------------------------------------------------------------------------------------------
-// Purpose: 
-// --------------------------------------------------------------------------------------------------------------------
-#ifndef HISTORY_H
-#define HISTORY_H
-#include <iostream>
+#ifndef HISTORY_H_INCLUDED
+#define HISTORY_H_INCLUDED
+
 #include "Transaction.h"
-#include "MediaLibrary.h"
+#include "CustomerRecords.h"
+
 using namespace std;
 
 class History : public Transaction
 {
 public:
-	History();							// default constructor
-	History(string&, MediaLibrary&);
-	~History();							// destructor
+	//constructors
+	History();
+	History(string, CustomerRecords&);
+	~History();
 
 private:
-	void doTransaction();
+
 };
-#endif
+#endif// HISTORY_H_INCLUDED

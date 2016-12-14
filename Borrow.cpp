@@ -1,4 +1,4 @@
-//#include "stdafx.h"
+#include "stdafx.h"
 #include "Borrow.h"
 
 Borrow::Borrow(MediaLibrary &lib, CustomerRecords *custTable, string custId, string media, string genre, string title, string dir,
@@ -30,7 +30,7 @@ void Borrow::doTransaction(MediaLibrary &lib, CustomerRecords *custTable, string
 				if (hasStock)
 				{
 					custPtr->insertRental(media, genre, title, dir, actorFirst, actorLast, month, yr);
-					//TODO: Transaction History
+					custPtr->addHistory("Borrow ", title, dir, actorFirst, actorLast, month, yr);
 				}
 				
 			}

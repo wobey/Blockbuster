@@ -1,4 +1,4 @@
-//#include "stdafx.h"
+#include "stdafx.h"
 // ------------------------------------------------ Customer.cpp ----------------------------------------------------------
 // John Fitzgerald, Christine Sutton CSS343 A 
 // Date of Creation: 12-11-16
@@ -105,6 +105,19 @@ bool Customer::deleteRental(Movie *moviePtr)
 		rentals.deleteMovie(moviePtr);
 	}
 	return false;
+}
+
+void Customer::printHistory()
+{
+	cout << "Transaction history for customer# " << getID() << ": " << endl;
+	history.print();
+}
+
+void Customer::addHistory(string trans, string title, string dir, string actorFirst, string actorLast, string month, string yr)
+{
+	string totalTransaction = trans + " " + title + " " + dir + " " + actorFirst + " " + actorLast + " " + month + " " + yr;
+	history.insert(totalTransaction);
+	
 }
 
 //---------------------------- operator << -------------------------------------
