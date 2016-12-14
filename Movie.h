@@ -29,7 +29,7 @@ public:
 	void setDirector(string);
 
 	//assigns
-	virtual Movie operator=(const Movie &mov);
+	virtual Movie* operator=(const Movie*);
 
 	//operator overloads
 	virtual bool operator>(const Movie&);
@@ -46,6 +46,5 @@ private:
 	string year;
 	string title;
 	string director;
-
 };
 #endif // MOVIE_H_INCLUDED

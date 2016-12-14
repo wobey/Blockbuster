@@ -24,9 +24,7 @@ Movie::Movie(const Movie& mov)
 	*this = mov;
 }
 
-Movie::~Movie()
-{
-}
+Movie::~Movie() { }
 
 int Movie::getStock()
 {
@@ -68,20 +66,20 @@ void Movie::setDirector(string d)
 	director = d;
 }
 
-Movie Movie::operator=(const Movie &mov)
+Movie* Movie::operator=(const Movie* mov)
 {
 	//duplicate check
-	if (this == &mov)
+	if (this == mov)
 	{
-		return *this;
+		return this;
 	}
 
-	stock = mov.stock;
-	year = mov.year;
-	title = mov.title;
-	director = mov.director;
+	stock = mov->stock;
+	year = mov->year;
+	title = mov->title;
+	director = mov->director;
 
-	return *this;
+	return this;
 }
 
 bool Movie::operator>(const Movie &mov)

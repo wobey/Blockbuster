@@ -11,6 +11,7 @@ Classic::Classic(int ct, string yr, string name, string dir, string first, strin
 	actorFirst = first;
 	actorLast = last;
 	month = mon;
+	classicCopy = NULL;
 } //end Classic
 
 Classic::~Classic()
@@ -86,6 +87,11 @@ bool Classic::operator!=(Classic &cls)
 	return ((getStock() != cls.getStock()) || (getYear() != cls.getYear()) || (getDirector() != cls.getDirector()) ||
 		(actorFirst != cls.actorFirst) || (actorLast != cls.actorLast) || (month != cls.month));
 } //end operator!=
+
+void Classic::assignClassicCopy(Classic* movie)
+{
+	classicCopy = movie;
+}
 
 ostream& operator<<(ostream& output, Classic &cls)
 {

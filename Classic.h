@@ -33,11 +33,13 @@ public:
 	void setActorLast(string);
 	void setMonth(string);
 
+	void assignClassicCopy(Classic*);
+
 private:
 	//data
 	string actorFirst;
 	string actorLast;
 	string month;
-
+	Classic* classicCopy;		// only used for classics (is set from within BSTree)
 };
 #endif// CLASSIC_H_INCLUDED

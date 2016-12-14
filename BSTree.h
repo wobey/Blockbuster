@@ -33,11 +33,11 @@ public:
 	bool operator==(const BSTree&) const;
 	bool operator!=(const BSTree&) const;
 	bool insert(T*, string, string);
-	bool retrieve(const T&, T*&);
+	T* retrieve(string, string);
 	void displaySideways() const;			// provided below, displays the tree sideways
-											//int getHeight(const NodeData<T>&) const;
-											//void bstreeToArray(const NodeData<T>*[]);
-											//void arrayToBSTree(const NodeData<T>*[]);
+	//int getHeight(const NodeData<T>&) const;
+	//void bstreeToArray(const NodeData<T>*[]);
+	//void arrayToBSTree(const NodeData<T>*[]);
 
 private:
 	struct Node
@@ -54,12 +54,13 @@ private:
 
 											// utility functions
 	void sideways(Node*, int) const;		// provided below, helper for displaySideways()
-	void insert(Node*&, Node*&, bool&);
+	void insert(Node*&, Node*&);
 	Node* copyTree(const Node*, Node*);
 	bool testEqual(const Node*, const Node*) const;
 	void makeEmpty(Node*);
-	bool retrieve(const T&, T*&, const Node*);
+	T* retrieve(string, string, const Node*);
 	void displayInOrder(const Node*) const;
+	void classicCopy(T*&, T*&);
 	//void getHeight_FindNode(const NodeData<T>&, Node*&, Node*) const;
 	//int getHeight(const NodeData<T>&, Node*&) const;
 	//void bstreetoArray(NodeData<T>*[], Node*, int&);
@@ -246,7 +247,6 @@ template <class T>
 bool BSTree<T>::insert(T* dataNode, string first, string second)
 {
 	Node *newNode;
-	bool isUnique = true;
 
 	// create and populate new node
 	newNode = new Node;
@@ -256,31 +256,35 @@ bool BSTree<T>::insert(T* dataNode, string first, string second)
 	newNode->secondSortCriterion = second;
 
 	// insert the node recursively
-	insert(root, newNode, isUnique);
+	insert(root, newNode);
+	
+	numNodes++; // increment the total number of nodes in the BST
+	
+	return true;
 
-	// determine if the node was unique or not (duplicate)
-	if (isUnique)
-	{
-		numNodes++;		// increment the total number of nodes in the BST
-		return true;
-	}
-	else  // the node was not unique
-	{
-		delete newNode;
-		return false;
-	}
+	//// determine if the node was unique or not (duplicate)
+	//if (isUnique)
+	//{
+	//			
+	//	return true;
+	//}
+	//else  // the node was not unique
+	//{
+	//	delete newNode;
+	//	return false;
+	//}
 }
 
 //---------------------------- insert -------------------------------------
-// inserts value (return true) or skips insertion if duplicate (return false)
+// inserts value or skips insertion if duplicate -- unless the insertion is Classic which indicates the 
 template <class T>
-void BSTree<T>::insert(Node*& currNode, Node*& newNode, bool& isUnique)
+void BSTree<T>::insert(Node*& currNode, Node*& newNode)
 {
 	// finds the correct BST position and inserts the newNode
 	if (currNode == NULL)
 	{
 		currNode = newNode;                  // Insert the node.
-											 //cout << *currNode->data;
+		//cout << *currNode->data;
 	}
 	//else if (*newNode->data < *currNode->data)
 	//	insert(currNode->left, newNode, isUnique);     // Search the left branch
@@ -290,25 +294,42 @@ void BSTree<T>::insert(Node*& currNode, Node*& newNode, bool& isUnique)
 	//	isUnique = false;					// Data is a duplicate
 
 	else if (newNode->firstSortCriterion < currNode->firstSortCriterion)
-		insert(currNode->left, newNode, isUnique);     // Search the left branch
+		insert(currNode->left, newNode);     // Search the left branch
 	else if (newNode->firstSortCriterion > currNode->firstSortCriterion)
-		insert(currNode->right, newNode, isUnique);    // Search the right branch
+		insert(currNode->right, newNode);    // Search the right branch
 	else if (newNode->firstSortCriterion == currNode->firstSortCriterion)		// TODO: SWITCH TO SECOND SEARCH CRITERION
-		isUnique = false;					// Data is a duplicate
+	{
+		classicCopy(currNode->data, newNode->data);
+
+		// TODO: how do I progress insertion?
+
+		//isUnique = false;					// Data is a duplicate
+	}
+}
+
+//---------------------------- classicCopy -------------------------------------
+// points each Classic's classicCopy pointer to that of the other Classic with the same Title
+template <class T>
+void BSTree<T>::classicCopy(T*& currNode, T*& newNode)
+{
+	currNode->assignClassicCopy(newNode);
+	newNode->assignClassicCopy(currNode);
 }
 
 //---------------------------- retrieve -------------------------------------
 // retrieves a given node's ptr
 template <class T>
-bool BSTree<T>::retrieve(const T& searchData, T*& foundPtr)
+T* BSTree<T>::retrieve(string first, string second)
 {
-	return retrieve(searchData, foundPtr, root);
+	// determine if first and/or second are valid (some will be blank, bogus, etc. for transactions)
+
+	return retrieve(first, second, root);
 }
 
 //---------------------------- retrieve -------------------------------------
 // recursively retrieves a given node's ptr
 template <class T>
-bool BSTree<T>::retrieve(const T& searchData, T*& foundPtr, const Node* bstNode)
+T* BSTree<T>::retrieve(string first, string second, const Node* bstNode)
 {
 	// the node is not in the BST
 	if (bstNode == NULL)

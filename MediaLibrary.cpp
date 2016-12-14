@@ -18,8 +18,8 @@ bool MediaLibrary::insert(string media, string genre, string title, string dir, 
 {
 	if (genre == "D")
 	{
-		Drama dMovie(1, yr, title, dir);
-		dramas->insert(&dMovie, dir, title);
+		Drama *cPtr = new Drama(1, yr, title, dir);
+		dramas->insert(cPtr, dir, title);
 	}
 	else if (genre == "F")
 	{
@@ -39,6 +39,7 @@ bool MediaLibrary::deleteMovie(Movie *ptr)
 {
 	delete ptr;
 	ptr = NULL;
+
 	return true;
 }
 
@@ -49,6 +50,7 @@ MediaLibrary::~MediaLibrary()
 	dramas->makeEmpty();
 	comedies->makeEmpty();
 
+	// TODO: pointers need to be deleted or not left hanging
 }
 
 

@@ -17,5 +17,8 @@ public:
 	Drama(const Drama&);
 	~Drama();
 
+	// TODO: fix assignClassicCopy to not be required here
+	void assignClassicCopy(Drama*) { }		// only serves to not throw errors in BSTree
+
 };
 #endif //DRAMA_H_INCLUDED

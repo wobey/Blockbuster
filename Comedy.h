@@ -17,5 +17,8 @@ public:
 	Comedy(const Comedy&);
 	~Comedy();
 
+	// TODO: fix assignClassicCopy to not be required here
+	void assignClassicCopy(Comedy*) { }		// only serves to not throw errors in BSTree
+
 };
 #endif //COMEDY_H_INCLUDED
