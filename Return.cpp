@@ -1,8 +1,8 @@
-//#include "stdafx.h"
+#include "stdafx.h"
 #include "Return.h"
 
 
-Return::Return(MediaLibrary & lib, CustomerRecords custTable, string custId, char media, char genre, string title, string dir,
+Return::Return(MediaLibrary & lib, CustomerRecords *custTable, string custId, char media, char genre, string title, string dir,
 	string actorFirst, string actorLast, int month, int yr)
 {
 	doTransaction(lib, custTable, custId, media, genre, title, dir, actorFirst, actorLast, month, yr);
@@ -12,15 +12,15 @@ Return::~Return()
 {
 }
 
-void Return::doTransaction(MediaLibrary & lib, CustomerRecords custTable, string custId, char media, char genre, string title, 
+void Return::doTransaction(MediaLibrary &lib, CustomerRecords *custTable, string custId, char media, char genre, string title, 
 	string dir, string actorFirst, string actorLast, int month, int yr)
 {
 	//Search for customer
-	Customer *custPtr = custTable.find(custId);
+	Customer *custPtr = custTable->find(custId);
 	if (custPtr != NULL)
 	{
 		//Find movie in customer library
-		Movie* moviePtr = custPtr->searchRentals(month, yr, title, dir, actorLast);
+		Movie* moviePtr = custPtr->searchRentals(genre, month, yr, title, dir, actorLast);
 
 		if (moviePtr != NULL)
 		{
@@ -30,7 +30,7 @@ void Return::doTransaction(MediaLibrary & lib, CustomerRecords custTable, string
 			//TODO: Transaction History
 
 			//Add movie back to library stock
-			Movie *findMovie = lib.search(month, yr, title, dir, actorLast);
+			Movie *findMovie = lib.search(genre, month, yr, title, dir, actorLast);
 
 			if (findMovie != NULL) 
 			{

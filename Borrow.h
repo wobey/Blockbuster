@@ -12,12 +12,12 @@ class Borrow : public Transaction
 {
 public:
 	// constructors
-	Borrow(MediaLibrary &lib, CustomerRecords custTable, string custId, char media, char genre, string title, string dir, string actorFirst, 
+	Borrow(MediaLibrary &lib, CustomerRecords *custTable, string custId, char media, char genre, string title, string dir, string actorFirst, 
 		string actorLast, int month, int yr);
 	~Borrow();
 
 private:
-	void doTransaction(MediaLibrary &lib, CustomerRecords custTable, string custId, char media, char genre, string title, string dir, 
+	void doTransaction(MediaLibrary &lib, CustomerRecords *custTable, string custId, char media, char genre, string title, string dir, 
 		string actorFirst, string actorLast, int month, int yr);
 
 };

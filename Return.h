@@ -11,13 +11,13 @@ class Return : public Transaction
 {
 public:
 	//constructors
-	Return(MediaLibrary &lib, CustomerRecords custTable, string custId, char media, char genre, string title, string dir, string actorFirst,
+	Return(MediaLibrary &lib, CustomerRecords *custTable, string custId, char media, char genre, string title, string dir, string actorFirst,
 		string actorLast, int month, int yr);
 	~Return();
 
 private:
 	//other
-	void doTransaction(MediaLibrary &lib, CustomerRecords custTable, string custId, char media, char genre, string title, string dir,
+	void doTransaction(MediaLibrary &lib, CustomerRecords *custTable, string custId, char media, char genre, string title, string dir,
 		string actorFirst, string actorLast, int month, int yr);
 
 };

@@ -1,64 +1,39 @@
-//#include "stdafx.h"
+#include "stdafx.h"
 #include "CustomerRecords.h"
 
 
 CustomerRecords::CustomerRecords()
 {
+	table = new HashTable<Customer>;
 }
-
-CustomerRecords::CustomerRecords(const CustomerRecords &)
-{
-}
-
 
 CustomerRecords::~CustomerRecords()
 {
-}
-
-CustomerRecords CustomerRecords::operator=(const CustomerRecords &)
-{
-	return CustomerRecords();
-}
-
-bool CustomerRecords::operator==(const CustomerRecords &)
-{
-	return false;
-}
-
-bool CustomerRecords::operator!=(const CustomerRecords &)
-{
-	return false;
+	table->clear();
 }
 
 void CustomerRecords::insert(Customer *cust)
 {
-
-}
-
-void CustomerRecords::remove(const Customer &)
-{
+	table->insert(cust);
 }
 
 Customer* CustomerRecords::find(string custId) const
 {
-	return NULL;
-}
-
-Customer CustomerRecords::retrieve(const int) const
-{
-	return Customer();
+	Customer *findCust = table->retrieve(custId);
+	return findCust;
 }
 
 bool CustomerRecords::isEmpty() const
 {
-	return false;
+	return table->isEmpty();
 }
 
 int CustomerRecords::size() const
 {
-	return 0;
+	return table->getNumEntries();
 }
 
 void CustomerRecords::clear()
 {
+	table->clear();
 }

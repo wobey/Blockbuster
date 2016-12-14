@@ -23,7 +23,7 @@ class HashTable
 public:
 	HashTable();							// default constructor
 	~HashTable();							// destructor
-	
+
 	int getHash(const T*) const;
 	bool insert(T*);
 	//bool erase(T*);		// never used
@@ -211,13 +211,13 @@ void HashTable<T>::clear()
 template <class T1>
 std::ostream& operator<<(ostream& ostream, const HashTable<T1>& rhs)
 {
-		for (int i = 1; i < rhs.tableSize; i++)
-		{
-			if (rhs.table[i] != NULL)
-				ostream << "[i=" << i << "] " << *rhs.table[i]->data << endl;
-		}
+	for (int i = 1; i < rhs.tableSize; i++)
+	{
+		if (rhs.table[i] != NULL)
+			ostream << "[i=" << i << "] " << *rhs.table[i]->data << endl;
+	}
 
-		cout << endl;
+	cout << endl;
 
-		return ostream;
+	return ostream;
 }

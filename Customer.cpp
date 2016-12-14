@@ -1,4 +1,4 @@
-//#include "stdafx.h"
+#include "stdafx.h"
 // ------------------------------------------------ Customer.cpp ----------------------------------------------------------
 // John Fitzgerald, Christine Sutton CSS343 A 
 // Date of Creation: 12-11-16
@@ -25,7 +25,9 @@ Customer::Customer(string idNum, string last, string first)
 
 //---------------------------- DefaultDestructor -------------------------------------
 // destructor
-Customer::~Customer() { }
+Customer::~Customer()
+{
+}
 
 //---------------------------- hash -------------------------------------
 // returns a hash based on each of the customer's id numbers
@@ -72,15 +74,47 @@ Customer Customer::operator=(const Customer &cust)
 
 bool Customer::insertRental(char media, char genre, string title, string dir, string actorFirst, string actorLast, int month, int yr)
 {
-	return false;
+	//Check if customer has a copy of this movie
+	//If not, insert new movie
+	//Otherwise increment stock in customer rentals
+	Movie *findMovie = rentals.search(genre, month, yr, title, actorLast, dir);
+	
+	if (findMovie == NULL)
+	{	
+		rentals.insert(media, genre, title, dir, actorFirst, actorLast, month, yr);
+	}
+	else
+	{
+		findMovie->increaseStock();
+	}
+
+	return true;
 }
 
-Movie * Customer::searchRentals(int, int, string, string, string)
-{
-	return NULL;// nullptr;
+Movie *Customer::searchRentals(char genre, int month, int yr, string title, string dir, string actorLast)
+{	
+	Movie *findMovie = rentals.search(genre, month, yr, title, actorLast, dir);
+	return findMovie;
 }
 
 bool Customer::deleteRental(Movie *moviePtr)
 {
+	moviePtr->decreaseStock();
+	if (moviePtr->getStock() == 0)
+	{
+		rentals.deleteMovie(moviePtr);
+	}
 	return false;
+}
+
+//---------------------------- operator << -------------------------------------
+// displays customer information
+ostream& operator<<(ostream& ostream, const Customer& rhs)
+{
+	ostream << "Customer Name: " << rhs.getFirstName() << " " << rhs.getLastName() << " ";
+	ostream << "ID: " << rhs.getID() << endl;
+
+	// TODO: output customers rental history
+
+	return ostream;
 }

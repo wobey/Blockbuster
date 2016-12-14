@@ -25,7 +25,7 @@ public:
 	BSTree();								// constructor
 	BSTree(const BSTree&);					// copy constructor
 	~BSTree();								// destructor, calls makeEmpty	
-	
+
 	bool isEmpty() const;					// true if tree is empty, otherwise false
 	void makeEmpty();						// make the tree empty so isEmpty returns true
 	BSTree& operator=(const BSTree&);
@@ -35,9 +35,9 @@ public:
 	bool insert(T*, string, string);
 	bool retrieve(const T&, T*&);
 	void displaySideways() const;			// provided below, displays the tree sideways
-	//int getHeight(const NodeData<T>&) const;
-	//void bstreeToArray(const NodeData<T>*[]);
-	//void arrayToBSTree(const NodeData<T>*[]);
+											//int getHeight(const NodeData<T>&) const;
+											//void bstreeToArray(const NodeData<T>*[]);
+											//void arrayToBSTree(const NodeData<T>*[]);
 
 private:
 	struct Node
@@ -52,7 +52,7 @@ private:
 	Node* root;								// root of the tree
 	int numNodes;							// total number of BST nodes
 
-	// utility functions
+											// utility functions
 	void sideways(Node*, int) const;		// provided below, helper for displaySideways()
 	void insert(Node*&, Node*&, bool&);
 	Node* copyTree(const Node*, Node*);
@@ -101,7 +101,7 @@ typename BSTree<T>::Node* BSTree<T>::copyTree(const Node* originalBST, Node* new
 	Node* newNode = new Node;
 	T* ptr = new T(*originalBST->data);		// T constructor takes T
 
-	// store data and pointers in the newNode
+											// store data and pointers in the newNode
 	newNode->data = ptr;
 	newNode->left = newNode->right = NULL;
 
@@ -274,7 +274,7 @@ void BSTree<T>::insert(Node*& currNode, Node*& newNode, bool& isUnique)
 	if (currNode == NULL)
 	{
 		currNode = newNode;                  // Insert the node.
-		//cout << *currNode->data;
+											 //cout << *currNode->data;
 	}
 	//else if (*newNode->data < *currNode->data)
 	//	insert(currNode->left, newNode, isUnique);     // Search the left branch

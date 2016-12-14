@@ -15,21 +15,11 @@ class CustomerRecords
 public:
 	//constructors
 	CustomerRecords();
-	CustomerRecords(const CustomerRecords&);
 	~CustomerRecords();
-
-	//assigns
-	CustomerRecords operator=(const CustomerRecords&);
-
-	//comparitors
-	bool operator==(const CustomerRecords&);
-	bool operator!=(const CustomerRecords&);
 
 	//modifiers
 	void insert(Customer*);
-	void remove(const Customer&);
 	Customer* find(string custId) const;
-	Customer retrieve(const int) const;
 
 	//other
 	bool isEmpty() const;
@@ -38,7 +28,7 @@ public:
 
 private:
 	//data
-	HashTable<Customer> table;
+	HashTable<Customer> *table;
 
 };
 #endif //CUSTOMERRECORDS_H_INCLUDED

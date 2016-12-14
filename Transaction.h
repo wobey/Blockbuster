@@ -1,21 +1,18 @@
-// ------------------------------------------------ Transaction.h ----------------------------------------------------------
-// John Fitzgerald, Christine Sutton CSS343 A 
-// Date of Creation: 11-24-16
-// Date of Last Modification: 11-24-16
-// --------------------------------------------------------------------------------------------------------------------
-// Purpose: 
-// --------------------------------------------------------------------------------------------------------------------
-#ifndef TRANSACTION_H
-#define TRANSACTION_H
+#ifndef TRANSACTION_H_INCLUDED
+#define TRANSACTION_H_INCLUDED
+
 #include <iostream>
+
 using namespace std;
 
 class Transaction
 {
 public:
-	Transaction() {}							// default constructor
-	virtual ~Transaction() {}					// destructor
+	//constructors
+	Transaction();
+	virtual ~Transaction();
 
-	virtual void doTransaction() = 0;
+private:
+	//virtual void doTransaction() = 0;
 };
-#endif
+#endif //TRANSACTION_H_INCLUDED
