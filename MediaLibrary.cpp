@@ -1,4 +1,4 @@
-//#include "stdafx.h"
+#include "stdafx.h"
 #include "MediaLibrary.h"
 
 MediaLibrary::MediaLibrary()
@@ -8,18 +8,32 @@ MediaLibrary::MediaLibrary()
 	comedies = new BSTree<Comedy>;
 }
 
-Movie* MediaLibrary::search(string, string, string, string, string, string)
+Movie* MediaLibrary::search(string genre, string month, string yr, string title, string dir, string actorLast)
 {
 	Movie* findMovie;
-	return NULL;
+
+	if (genre == "C")
+	{
+		findMovie = classics->retrieve(yr, actorLast);
+	}
+	else if (genre == "D")
+	{
+		findMovie = dramas->retrieve(dir, title);
+	}
+	else
+	{
+		findMovie = comedies->retrieve(title, yr);
+	}
+
+	return findMovie;
 }
 
 bool MediaLibrary::insert(string media, string genre, string title, string dir, string actorFirst, string actorLast, string month, string yr)
 {
 	if (genre == "D")
 	{
-		Drama *cPtr = new Drama(1, yr, title, dir);
-		dramas->insert(cPtr, dir, title);
+		Drama dMovie(1, yr, title, dir);
+		dramas->insert(&dMovie, dir, title);
 	}
 	else if (genre == "F")
 	{
@@ -39,18 +53,30 @@ bool MediaLibrary::deleteMovie(Movie *ptr)
 {
 	delete ptr;
 	ptr = NULL;
-
 	return true;
 }
 
-MediaLibrary::~MediaLibrary()
+void MediaLibrary::print()
 {
+	cout << "Movie Library: " << endl;
+	cout << "Classics" << endl;
+	classics->print();
+	cout << "" << endl;
+	cout << "Dramas" << endl;
+	dramas->print();
+	cout << "" << endl;
+	cout << "Comedies" << endl;
+	comedies->print();
+	cout << "" << endl;
+}
+
+MediaLibrary::~MediaLibrary()
+{	
 	//Deletes any movies remaining in the genre BSTrees
 	classics->makeEmpty();
 	dramas->makeEmpty();
 	comedies->makeEmpty();
 
-	// TODO: pointers need to be deleted or not left hanging
 }
 
 
