@@ -9,11 +9,12 @@ using namespace std;
 
 class Comedy : public Movie
 {
-	friend ostream& operator<<(ostream&, const Comedy&);
+	friend ostream& operator<<(ostream&, Comedy&);
 
 public:
 	//constructors
-	Comedy(int ct, string yr, string name, string dir, string gen);
+	Comedy() { }
+	Comedy(int ct, int yr, string name, string dir, string gen);
 	Comedy(const Comedy&);
 	~Comedy();
 

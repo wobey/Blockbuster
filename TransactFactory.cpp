@@ -2,7 +2,7 @@
 #include "TransactFactory.h"
 
 Transaction *TransactFactory::makeTransaction(MediaLibrary &lib, CustomerRecords *custTable, string type, string custId, string media, string genre,
-	string title, string dir, string actorFirst, string actorLast, string month, string yr)
+	string title, string dir, string actorFirst, string actorLast, int month, int yr)
 {
 	if (type == "B")
 		return new Borrow(lib, custTable, custId, media, genre, title, dir, actorFirst, actorLast, month, yr);

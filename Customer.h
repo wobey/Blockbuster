@@ -29,11 +29,11 @@ public:
 	//Other
 	static int hash(string) ;
 	bool insertRental(string media, string genre, string title,
-		string dir, string actorFirst, string actorLast, string month, string yr);
-	Movie* searchRentals(string, string, string, string, string, string);
+		string dir, string actorFirst, string actorLast, int month, int yr);
+	Movie* searchRentals(string, int, int, string, string, string, string);
 	bool deleteRental(Movie*);
 	void printHistory();
-	void addHistory(string trans, string title, string dir, string actorFirst, string actorLast, string month, string yr);
+	void addHistory(string trans, string title, string dir, string actorFirst, string actorLast, int month, int yr);
 
 private:
 	//data

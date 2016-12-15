@@ -2,7 +2,7 @@
 #include "Drama.h"
 
 
-Drama::Drama(int ct, string yr, string name, string dir, string gen): Movie(ct, yr, name, dir, gen)
+Drama::Drama(int ct, int yr, string name, string dir, string gen): Movie(ct, yr, name, dir, gen)
 {
 } //end Drama()
 
@@ -22,7 +22,7 @@ bool Drama::compareGreater(Drama* rhs)
 	else if (title.compare(rhs->title) != 0)
 		return title.compare(rhs->title) > 0;
 
-	return std::stoi(year) > std::stoi(rhs->year);
+	return year > rhs->year;
 }
 
 bool Drama::compareEqual(Drama* rhs)

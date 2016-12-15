@@ -23,8 +23,8 @@ public:
 	MediaLibrary();								// default constructor
 	~MediaLibrary();							// destructor
 
-	Movie* search(string, string, string, string, string, string);
-	bool insert(string media, string genre, string title, string dir, string actorFirst, string actorLast, string month, string yr);
+	Movie* search(string, int, int, string, string, string, string);
+	//bool insert(string media, string genre, string title, string dir, string actorFirst, string actorLast, string month, string yr);
 	bool insert(Movie*, string);
 	bool deleteMovie(Movie* ptr);
 	void print();

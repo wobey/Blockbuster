@@ -9,6 +9,6 @@ class TransactFactory
 {
 public:
 	static Transaction* makeTransaction(MediaLibrary &lib, CustomerRecords *custTable, string type, string custId, string media, string genre,
-		string title, string dir, string actorFirst, string actorLast, string month, string yr);
+		string title, string dir, string actorFirst, string actorLast, int month, int yr);
 };
 

@@ -12,7 +12,7 @@ Movie::Movie()
 }
 
 
-Movie::Movie(int ct, string yr, string name, string dir, string gen)
+Movie::Movie(int ct, int yr, string name, string dir, string gen)
 {
 	stock = ct;
 	year = yr;
@@ -35,7 +35,7 @@ int Movie::getStock()
 	return stock;
 }
 
-string Movie::getYear()
+int Movie::getYear()
 {
 	return year;
 }
@@ -60,7 +60,7 @@ void Movie::setStock(int s)
 	stock = s;
 }
 
-void Movie::setYear(string y)
+void Movie::setYear(int y)
 {
 	year = y;
 }

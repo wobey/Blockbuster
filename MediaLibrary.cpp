@@ -8,46 +8,62 @@ MediaLibrary::MediaLibrary()
 	comedies = new BSTree<Comedy>;
 }
 
-Movie* MediaLibrary::search(string genre, string month, string yr, string title, string dir, string actorLast)
+Movie* MediaLibrary::search(string genre, int month, int yr, string title, string dir, string first, string last)
 {
-	Movie* findMovie;
+	Movie* findMovie = NULL;
 
 	if (genre == "C")
 	{
-		findMovie = classics->retrieve(yr, actorLast);
+		Classic* classic = new Classic;
+		classic->setYear(yr);
+		classic->setActorFirst(first);
+		classic->setActorLast(last);
+		findMovie = classics->retrieve(classic);
+		delete classic;
 	}
 	else if (genre == "D")
 	{
-		findMovie = dramas->retrieve(dir, title);
+		Drama* drama = new Drama;
+		drama->setDirector(dir);
+		drama->setTitle(title);
+		findMovie = dramas->retrieve(drama);
+		delete drama;
 	}
-	else
+	else if (genre == "F")
 	{
-		findMovie = comedies->retrieve(title, yr);
+		Comedy* comedy = new Comedy;
+		comedy->setTitle(title);
+		comedy->setYear(yr);
+		findMovie = comedies->retrieve(comedy);
+		delete comedy;
 	}
+
+	else
+		return NULL;
 
 	return findMovie;
 }
 
-bool MediaLibrary::insert(string media, string genre, string title, string dir, string actorFirst, string actorLast, string month, string yr)
-{
-	if (genre == "D")
-	{
-		Drama dMovie(1, yr, title, dir, genre);
-		dramas->insert(&dMovie, dir, title);
-	}
-	else if (genre == "F")
-	{
-		Comedy *cPtr = new Comedy(1, yr, title, dir, genre);
-		comedies->insert(cPtr, title, yr);
-	}
-	else
-	{
-		Classic *cPtr = new Classic(1, yr, title, dir, actorFirst, actorLast, month, genre);
-		classics->insert(cPtr, yr, actorLast);
-	}
-	
-	return true;
-}
+//bool MediaLibrary::insert(string media, string genre, string title, string dir, string actorFirst, string actorLast, string month, string yr)
+//{
+//	if (genre == "D")
+//	{
+//		Drama dMovie(1, yr, title, dir, genre);
+//		dramas->insert(&dMovie, dir, title);
+//	}
+//	else if (genre == "F")
+//	{
+//		Comedy *cPtr = new Comedy(1, yr, title, dir, genre);
+//		comedies->insert(cPtr, title, yr);
+//	}
+//	else
+//	{
+//		Classic *cPtr = new Classic(1, yr, title, dir, actorFirst, actorLast, month, genre);
+//		classics->insert(cPtr, yr, actorLast);
+//	}
+//	
+//	return true;
+//}
 
 bool MediaLibrary::insert(Movie* movie, string genre)
 {

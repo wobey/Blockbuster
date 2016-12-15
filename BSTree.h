@@ -33,7 +33,10 @@ public:
 	bool operator==(const BSTree&) const;
 	bool operator!=(const BSTree&) const;
 	bool insert(T*, string, string);
+	bool insert(T*, int, string);
+	bool insert(T*, string, int);
 	T* retrieve(string, string);
+	T* retrieve(T*);
 	void displaySideways() const;			// provided below, displays the tree sideways
 	//int getHeight(const NodeData<T>&) const;
 	//void bstreeToArray(const NodeData<T>*[]);
@@ -59,7 +62,8 @@ private:
 	bool testEqual(const Node*, const Node*) const;
 	void makeEmpty(Node*);
 	T* retrieve(string, string, const Node*);
-	void displayInOrder(const Node*) const;
+	T* retrieve(T*, Node*);
+	void displayInOrder(Node*);
 	void classicCopy(T*&, T*&);
 	//void getHeight_FindNode(const NodeData<T>&, Node*&, Node*) const;
 	//int getHeight(const NodeData<T>&, Node*&) const;
@@ -267,6 +271,50 @@ bool BSTree<T>::insert(T* dataNode, string first, string second)
 }
 
 //---------------------------- insert -------------------------------------
+// insert a node into the BST
+template <class T>
+bool BSTree<T>::insert(T* dataNode, int first, string second)
+{
+	Node *newNode;
+
+	// create and populate new node
+	newNode = new Node;
+	newNode->data = dataNode;
+	newNode->left = newNode->right = NULL;
+	newNode->firstSortCriterion = first;
+	newNode->secondSortCriterion = second;
+
+	// insert the node recursively
+	insert(root, newNode);
+
+	numNodes++; // increment the total number of nodes in the BST
+
+	return true;
+}
+
+//---------------------------- insert -------------------------------------
+// insert a node into the BST
+template <class T>
+bool BSTree<T>::insert(T* dataNode, string first, int second)
+{
+	Node *newNode;
+
+	// create and populate new node
+	newNode = new Node;
+	newNode->data = dataNode;
+	newNode->left = newNode->right = NULL;
+	newNode->firstSortCriterion = first;
+	newNode->secondSortCriterion = second;
+
+	// insert the node recursively
+	insert(root, newNode);
+
+	numNodes++; // increment the total number of nodes in the BST
+
+	return true;
+}
+
+//---------------------------- insert -------------------------------------
 // inserts value or skips insertion if duplicate -- unless the insertion is Classic which indicates the 
 template <class T>
 void BSTree<T>::insert(Node*& currNode, Node*& newNode)
@@ -322,15 +370,15 @@ void BSTree<T>::classicCopy(T*& currNode, T*& newNode)
 //---------------------------- retrieve -------------------------------------
 // retrieves a given node's ptr
 template <class T>
-T* BSTree<T>::retrieve(string first, string second)
+T* BSTree<T>::retrieve(T* searchNode)
 {
-	return retrieve(first, second, root);
+	return retrieve(searchNode, root);
 }
 
 //---------------------------- retrieve -------------------------------------
 // recursively retrieves a given node's ptr
 template <class T>
-T* BSTree<T>::retrieve(string first, string second, const Node* bstNode)
+T* BSTree<T>::retrieve(T* searchNode, Node* bstNode)
 {
 	// TODO: 
 	// need to search with both first and second criteria
@@ -338,17 +386,58 @@ T* BSTree<T>::retrieve(string first, string second, const Node* bstNode)
 
 
 	// the node is not in the BST
-	//if (bstNode == NULL)
-	//	return NULL;
-	//else if (first < *bstNode->firstSortCriterion)	// search down the left subtree
-	//	retrieve(first, second, bstNode->left);
-	//else if (first > *bstNode->firstSortCriterion)   // search down the right subtree
-	//	retrieve(first, second, bstNode->right);
-	//else									// the node was found
-	//{
+	if (bstNode == NULL)
+	{
+		return NULL;
+	}
+	// store item
+	else if (searchNode->compareEqual(bstNode->data))	// check if the data is the same
+	{
 		return bstNode->data;
-	//}
+	}
+	else if (bstNode->data->compareGreater(searchNode))	// search down the left subtree
+		retrieve(searchNode, bstNode->left);
+	else// (first > *bstNode->firstSortCriterion)   // search down the right subtree
+		retrieve(searchNode, bstNode->right);
 }
+
+////---------------------------- retrieve -------------------------------------
+//// retrieves a given node's ptr
+//template <class T>
+//T* BSTree<T>::retrieve(string first, string second)
+//{
+//	return retrieve(first, second, root);
+//}
+//
+////---------------------------- retrieve -------------------------------------
+//// recursively retrieves a given node's ptr
+//template <class T>
+//T* BSTree<T>::retrieve(string first, string second, const Node* bstNode)
+//{
+//	// TODO: 
+//	// need to search with both first and second criteria
+//	// determine if first and/or second are valid (some will be blank, bogus, etc. for transactions)
+//
+//
+//	// the node is not in the BST
+//	if (bstNode == NULL)
+//	{
+//		return NULL;
+//	}
+//	// store item
+//	else if (bstNode->data->compareEqual(newNode->data))	// check if the data is the same
+//	{
+//		return bstNode->data;
+//	}
+//	else if (first < *bstNode->firstSortCriterion)	// search down the left subtree
+//		retrieve(first, second, bstNode->left);
+//	else if (first > *bstNode->firstSortCriterion)   // search down the right subtree
+//		retrieve(first, second, bstNode->right);
+//	else									// the node was found
+//	{
+//		return bstNode->data;
+//	}
+//}
 
 //------------------------- displaySideways ---------------------------------
 // Displays a binary tree as though you are viewing it from the side;
@@ -528,7 +617,7 @@ void BSTree<T>::sideways(Node* current, int level) const {
 //-------------------------- displayInOrder --------------------------------------
 // a helper function for the stream operator to output in-order BST
 template <class T>
-void BSTree<T>::displayInOrder(const Node* currNode) const
+void BSTree<T>::displayInOrder(Node* currNode)
 {
 	// in-order traversal
 	if(currNode)
@@ -538,6 +627,7 @@ void BSTree<T>::displayInOrder(const Node* currNode) const
 		displayInOrder(currNode->right);
 	}
 }
+
 
 //-------------------------- operator<< --------------------------------------
 // stream operator to output in-order BST

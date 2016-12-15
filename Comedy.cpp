@@ -3,7 +3,7 @@
 
 
 
-Comedy::Comedy(int ct, string yr, string name, string dir, string gen): Movie(ct, yr, name, dir, gen)
+Comedy::Comedy(int ct, int yr, string name, string dir, string gen): Movie(ct, yr, name, dir, gen)
 {
 } //end Comedy
 
@@ -21,7 +21,7 @@ bool Comedy::compareGreater(Comedy* rhs)
 		return title.compare(rhs->title) > 0;
 
 	// if not title, compare years
-	return std::stoi(year) > std::stoi(rhs->year);
+	return year > rhs->year;
 }
 
 bool Comedy::compareEqual(Comedy* rhs)

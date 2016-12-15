@@ -2,7 +2,7 @@
 #include "Borrow.h"
 
 Borrow::Borrow(MediaLibrary &lib, CustomerRecords *custTable, string custId, string media, string genre, string title, string dir,
-	string actorFirst, string actorLast, string month, string yr)
+	string actorFirst, string actorLast, int month, int yr)
 {
 	doTransaction(lib, custTable, custId, media, genre, title, dir, actorFirst, actorLast, month, yr);
 }
@@ -12,12 +12,12 @@ Borrow::~Borrow()
 }
 
 void Borrow::doTransaction(MediaLibrary &lib, CustomerRecords *custTable, string custId, string media, string genre, string title,
-	string dir, string actorFirst, string actorLast, string month, string yr)
+	string dir, string actorFirst, string actorLast, int month, int yr)
 {
 
 	//Search for the movie in stock
 	//If the movie exists in the library, lookup customer
-	Movie *findMovie = lib.search(genre, month, yr, title, dir, actorLast);
+	Movie *findMovie = lib.search(genre, month, yr, title, dir, actorFirst, actorLast);
 	if (findMovie != NULL)
 		{
 			//Find the customer checking out the movie

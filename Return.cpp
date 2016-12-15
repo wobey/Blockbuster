@@ -3,7 +3,7 @@
 
 
 Return::Return(MediaLibrary & lib, CustomerRecords *custTable, string custId, string media, string genre, string title, string dir,
-	string actorFirst, string actorLast, string month, string yr)
+	string actorFirst, string actorLast, int month, int yr)
 {
 	doTransaction(lib, custTable, custId, media, genre, title, dir, actorFirst, actorLast, month, yr);
 }
@@ -13,14 +13,14 @@ Return::~Return()
 }
 
 void Return::doTransaction(MediaLibrary &lib, CustomerRecords *custTable, string custId, string media, string genre, string title,
-	string dir, string actorFirst, string actorLast, string month, string yr)
+	string dir, string actorFirst, string actorLast, int month, int yr)
 {
 	//Search for customer
 	Customer *custPtr = custTable->find(custId);
 	if (custPtr != NULL)
 	{
 		//Find movie in customer library
-		Movie* moviePtr = custPtr->searchRentals(genre, month, yr, title, dir, actorLast);
+		Movie* moviePtr = custPtr->searchRentals(genre, month, yr, title, actorFirst, actorLast, dir);
 
 		if (moviePtr != NULL)
 		{
@@ -29,7 +29,7 @@ void Return::doTransaction(MediaLibrary &lib, CustomerRecords *custTable, string
 			custPtr->addHistory("Return", title, dir, actorFirst, actorLast, month, yr);
 
 			//Add movie back to library stock
-			Movie *findMovie = lib.search(genre, month, yr, title, dir, actorLast);
+			Movie *findMovie = lib.search(genre, month, yr, title, dir, actorFirst, actorLast);
 
 			if (findMovie != NULL) 
 			{

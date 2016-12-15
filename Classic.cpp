@@ -2,7 +2,7 @@
 #include "Classic.h"
 
 
-Classic::Classic(int ct, string yr, string name, string dir, string first, string last, string mon, string gen): Movie(ct, yr, name, dir, gen)
+Classic::Classic(int ct, int yr, string name, string dir, string first, string last, int mon, string gen): Movie(ct, yr, name, dir, gen)
 {
 	setStock(ct);
 	setYear(yr);
@@ -26,7 +26,7 @@ string Classic::getActorLast()
 	return actorLast;
 }
 
-string Classic::getMonth()
+int Classic::getMonth()
 {
 	return month;
 }
@@ -41,7 +41,7 @@ void Classic::setActorLast(string actlast)
 	actorLast = actlast;
 }
 
-void Classic::setMonth(string mon)
+void Classic::setMonth(int mon)
 {
 	month = mon;
 }
@@ -50,9 +50,9 @@ bool Classic::compareGreater(Classic* rhs)
 {
 	// compare year, month, and major actor
 	if (year != rhs->year)
-		return std::stoi(year) > std::stoi(rhs->year);
+		return year > rhs->year;
 	else if (month != rhs->month)
-		return std::stoi(month) > std::stoi(rhs->month);
+		return month > rhs->month;
 
 	string actor1 = actorFirst + actorLast;
 	string actor2 = rhs->actorFirst + rhs->actorLast;

@@ -9,11 +9,12 @@ using namespace std;
 
 class Classic : public Movie
 {
-	friend ostream& operator<<(ostream&, const Classic&);
+	friend ostream& operator<<(ostream&, Classic&);
 
 public:
 	//constructors
-	Classic(int ct, string yr, string name, string dir, string actorFirst, string actorLast, string mon, string gen);
+	Classic() {}
+	Classic(int ct, int yr, string name, string dir, string actorFirst, string actorLast, int mon, string gen);
 	~Classic();
 
 	//assignment
@@ -27,11 +28,11 @@ public:
 	//get and set
 	string getActorFirst();
 	string getActorLast();
-	string getMonth();
+	int getMonth();
 
 	void setActorFirst(string);
 	void setActorLast(string);
-	void setMonth(string);
+	void setMonth(int);
 
 	void assignClassicCopy(Classic*);
 	bool compareGreater(Classic*);
@@ -41,7 +42,7 @@ private:
 	//data
 	string actorFirst;
 	string actorLast;
-	string month;
+	int month;
 	Classic* classicCopy;		// only used for classics (is set from within BSTree)
 };
 #endif// CLASSIC_H_INCLUDED

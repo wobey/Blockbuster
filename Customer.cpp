@@ -7,6 +7,7 @@
 // Purpose: 
 // --------------------------------------------------------------------------------------------------------------------
 #include "Customer.h"
+#include <sstream>
 
 //---------------------------- DefaultConstructor -------------------------------------
 // creates an empty customer
@@ -77,18 +78,18 @@ string Customer::getID() const
 //	return *this;
 //}
 
-bool Customer::insertRental(string media, string genre, string title, string dir, string actorFirst, string actorLast, string month, string yr)
+bool Customer::insertRental(string media, string genre, string title, string dir, string actorFirst, string actorLast, int month, int yr)
 {
 	//Check if customer has a copy of this movie
 	//If not, insert new movie
 	//Otherwise increment stock in customer rentals
-	Movie *findMovie = rentals->search(genre, month, yr, title, actorLast, dir);
+	Movie *findMovie = rentals->search(genre, month, yr, title, actorFirst, actorLast, dir);
 	
 	if (findMovie == NULL)
 	{	
 		// create movie to insert 
 
-		rentals->insert(media, genre, title, dir, actorFirst, actorLast, month, yr);
+		//rentals->insert(media, genre, title, dir, actorFirst, actorLast, month, yr);
 	}
 	else
 	{
@@ -98,9 +99,10 @@ bool Customer::insertRental(string media, string genre, string title, string dir
 	return true;
 }
 
-Movie *Customer::searchRentals(string genre, string month, string yr, string title, string dir, string actorLast)
+Movie *Customer::searchRentals(string genre, int month, int yr, string title, string dir, string actorFirst, string actorLast)
 {	
-	Movie *findMovie = rentals->search(genre, month, yr, title, actorLast, dir);
+	Movie *findMovie = rentals->search(genre, month, yr, title, actorFirst, actorLast, dir);
+
 	return findMovie;
 }
 
@@ -120,9 +122,17 @@ void Customer::printHistory()
 	history->print();
 }
 
-void Customer::addHistory(string trans, string title, string dir, string actorFirst, string actorLast, string month, string yr)
+void Customer::addHistory(string trans, string title, string dir, string actorFirst, string actorLast, int month, int yr)
 {
-	string totalTransaction = trans + " " + title + " " + dir + " " + actorFirst + " " + actorLast + " " + month + " " + yr;
+	stringstream ss1;
+	ss1 << month;
+	string _month = ss1.str();
+
+	stringstream ss2;
+	ss2 << yr;
+	string _year = ss2.str();
+
+	string totalTransaction = trans + " " + title + " " + dir + " " + actorFirst + " " + actorLast + " " + _month + " " + _year;
 	history->insert(totalTransaction);
 	
 }
