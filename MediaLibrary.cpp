@@ -1,4 +1,4 @@
-#include "stdafx.h"
+//#include "stdafx.h"
 #include "MediaLibrary.h"
 
 MediaLibrary::MediaLibrary()
@@ -32,20 +32,41 @@ bool MediaLibrary::insert(string media, string genre, string title, string dir, 
 {
 	if (genre == "D")
 	{
-		Drama dMovie(1, yr, title, dir);
+		Drama dMovie(1, yr, title, dir, genre);
 		dramas->insert(&dMovie, dir, title);
 	}
 	else if (genre == "F")
 	{
-		Comedy *cPtr = new Comedy(1, yr, title, dir);
+		Comedy *cPtr = new Comedy(1, yr, title, dir, genre);
 		comedies->insert(cPtr, title, yr);
 	}
 	else
 	{
-		Classic *cPtr = new Classic(1, yr, title, dir, actorFirst, actorLast, month);
+		Classic *cPtr = new Classic(1, yr, title, dir, actorFirst, actorLast, month, genre);
 		classics->insert(cPtr, yr, actorLast);
 	}
 	
+	return true;
+}
+
+bool MediaLibrary::insert(Movie* movie, string genre)
+{
+	if (genre == "D")
+	{
+		Drama* drama = dynamic_cast<Drama*>(movie);
+		dramas->insert(drama, drama->getDirector(), drama->getTitle());
+	}
+	else if (genre == "F")
+	{
+		Comedy* comedy = dynamic_cast<Comedy*>(movie);
+		comedies->insert(comedy, comedy->getTitle(), comedy->getYear());
+	}
+	else
+	{
+		Classic* classic = dynamic_cast<Classic*>(movie);
+		classics->insert(classic, classic->getYear(), classic->getActorLast());
+	}
+
 	return true;
 }
 
@@ -80,5 +101,10 @@ MediaLibrary::~MediaLibrary()
 	// TODO verify with valgrind there are no leaks here
 }
 
+template <class T1>
+ostream& operator<<(ostream& ostream, const BSTree<T1> rhs)
+{
+	ostream << rhs;
 
-
+	return ostream;
+}

@@ -1,4 +1,4 @@
-#include "stdafx.h"
+//#include "stdafx.h"
 // ------------------------------------------------ Customer.cpp ----------------------------------------------------------
 // John Fitzgerald, Christine Sutton CSS343 A 
 // Date of Creation: 12-11-16
@@ -81,6 +81,8 @@ bool Customer::insertRental(string media, string genre, string title, string dir
 	
 	if (findMovie == NULL)
 	{	
+		// create movie to insert 
+
 		rentals.insert(media, genre, title, dir, actorFirst, actorLast, month, yr);
 	}
 	else

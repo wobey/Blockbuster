@@ -1,20 +1,19 @@
-#include "stdafx.h"
+//#include "stdafx.h"
 #include "Drama.h"
 
 
-Drama::Drama(int ct, string yr, string name, string dir): Movie(ct, yr, name, dir)
+Drama::Drama(int ct, string yr, string name, string dir, string gen): Movie(ct, yr, name, dir, gen)
 {
 } //end Drama()
 
 Drama::~Drama() { }
-
 
 Drama::Drama(const Drama &drm)
 {
 	*this = drm;
 }
 
-bool Drama::compareGreater(const Drama* rhs) const
+bool Drama::compareGreater(Drama* rhs)
 {
 	// compare directors, titles, and year
 	if (director.compare(rhs->director) != 0)
@@ -26,7 +25,7 @@ bool Drama::compareGreater(const Drama* rhs) const
 	return std::stoi(year) > std::stoi(rhs->year);
 }
 
-bool Drama::compareEqual(const Drama* rhs) const
+bool Drama::compareEqual(Drama* rhs)
 {
 	// determines if the titles and years are identical
 	if (director.compare(rhs->director) == 0 && title.compare(rhs->title) == 0)

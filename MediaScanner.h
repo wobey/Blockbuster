@@ -11,18 +11,19 @@
 #include <list>
 #include <fstream>
 #include "MediaLibrary.h"
+#include "MediaFactory.h"
 using namespace std;
 
 class MediaScanner
 {
 public:
 	MediaScanner() {}					// default constructor
-	MediaScanner(ifstream&);			// constructor
+	MediaScanner(fstream&);			// constructor
 	~MediaScanner();					// destructor
 
 private:
 	MediaLibrary media;
 
-	void readFile(ifstream&);	
+	void readFile(fstream&);	
 };
 #endif

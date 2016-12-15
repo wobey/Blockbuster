@@ -1,15 +1,31 @@
-#include "stdafx.h"
+//#include "stdafx.h"
 #include "MediaScanner.h"
 
-MediaScanner::MediaScanner(ifstream& ifstream)
+MediaScanner::MediaScanner(fstream& fstream)
 {
 	media = MediaLibrary();
-	readFile(ifstream);
+	readFile(fstream);
 }
 
 MediaScanner::~MediaScanner() { }
 
-void MediaScanner::readFile(ifstream& ifstream)
+void MediaScanner::readFile(fstream& fstream)
 {
-	// implement code to read stream
+	while (!fstream.eof())
+	{
+		Movie* movie = MediaFactory::createMovie(fstream);
+
+		if (movie != NULL)
+		{
+			media.insert(movie, movie->getGenre());
+		}
+		else
+			delete movie;
+	}
+
+	fstream.close();
+
+	cout << media.classics << endl;
+	cout << media.comedies << endl;
+	cout << media.dramas << endl;
 }

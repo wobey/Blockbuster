@@ -1,9 +1,9 @@
-#include "stdafx.h"
+//#include "stdafx.h"
 #include "Comedy.h"
 
 
 
-Comedy::Comedy(int ct, string yr, string name, string dir): Movie(ct, yr, name, dir)
+Comedy::Comedy(int ct, string yr, string name, string dir, string gen): Movie(ct, yr, name, dir, gen)
 {
 } //end Comedy
 
@@ -14,7 +14,7 @@ Comedy::Comedy(const Comedy &com)
 
 Comedy::~Comedy() { }
 
-bool Comedy::compareGreater(const Comedy* rhs) const
+bool Comedy::compareGreater(Comedy* rhs)
 {
 	// will check titles first if they exist
 	if (title.compare(rhs->title) != 0)
@@ -24,7 +24,7 @@ bool Comedy::compareGreater(const Comedy* rhs) const
 	return std::stoi(year) > std::stoi(rhs->year);
 }
 
-bool Comedy::compareEqual(const Comedy* rhs) const
+bool Comedy::compareEqual(Comedy* rhs)
 {
 	// determines if the titles and years are identical
 	if (title.compare(rhs->title) == 0 && year == rhs->year)

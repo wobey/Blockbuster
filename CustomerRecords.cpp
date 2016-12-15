@@ -1,4 +1,4 @@
-#include "stdafx.h"
+//#include "stdafx.h"
 #include "CustomerRecords.h"
 
 
@@ -39,7 +39,7 @@ void CustomerRecords::clear()
 	table->clear();
 }
 
-ostream& operator<<(ostream& ostream, const CustomerRecords rhs)
+ostream& operator<<(ostream& ostream, const CustomerRecords& rhs)
 {
 	ostream << *rhs.table;
 

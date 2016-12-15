@@ -13,7 +13,7 @@ class Classic : public Movie
 
 public:
 	//constructors
-	Classic(int ct, string yr, string name, string dir, string actorFirst, string actorLast, string mon);
+	Classic(int ct, string yr, string name, string dir, string actorFirst, string actorLast, string mon, string gen);
 	~Classic();
 
 	//assignment
@@ -34,8 +34,8 @@ public:
 	void setMonth(string);
 
 	void assignClassicCopy(Classic*);
-	bool compareGreater(const Classic*) const;
-	bool compareEqual(const Classic*) const;
+	bool compareGreater(Classic*);
+	bool compareEqual(Classic*);
 
 private:
 	//data

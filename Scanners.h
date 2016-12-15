@@ -21,12 +21,11 @@ public:
 
 	void readFiles(fstream&, fstream&, fstream&);
 
-private:
+protected:
 	bool readFile(fstream&, string);
 
-	CustomerScanner customerScanner;
+	CustomerScanner customerScanner; 
 	MediaScanner mediaScanner;
 	TransactionScanner transactionScanner;
-
 };
 #endif //SCANNERS_H_INCLUDED

@@ -13,14 +13,14 @@ class Comedy : public Movie
 
 public:
 	//constructors
-	Comedy(int ct, string yr, string name, string dir);
+	Comedy(int ct, string yr, string name, string dir, string gen);
 	Comedy(const Comedy&);
 	~Comedy();
 
 	// TODO: fix assignClassicCopy to not be required here
 	void assignClassicCopy(Comedy*) { }		// only serves to not throw errors in BSTree
-	bool compareGreater(const Comedy*) const;
-	bool compareEqual(const Comedy*) const;
+	bool compareGreater(Comedy*);
+	bool compareEqual(Comedy*);
 
 };
 #endif //COMEDY_H_INCLUDED

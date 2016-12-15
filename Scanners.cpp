@@ -12,8 +12,8 @@ void Scanners::readFiles(fstream& customerFile, fstream& movieFile, fstream& com
 {
 	if (!readFile(customerFile, "Customers"))
 		cout << "customer file was not read in correctly" << endl;
-	//if (!readFile(movieFile, "Movies"))
-	//	cout << "movie file was not read in correctly" << endl;
+	if (!readFile(movieFile, "Movies"))
+		cout << "movie file was not read in correctly" << endl;
 	//if (!readFile(commandFile, "Commands"))
 	//	cout << "command file was not read in correctly" << endl;
 }
@@ -23,7 +23,7 @@ bool Scanners::readFile(fstream& fstream, string type)
 	if (type == "Customers")
 		customerScanner = CustomerScanner(fstream);
 	//if (type == "Movies")
-	//
+	//	mediaScanner = MediaScanner(fstream);
 	//if (type == "Commands")
 
 	return true;

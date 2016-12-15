@@ -13,7 +13,7 @@ class Movie
 public:
 	//constructors
 	Movie();
-	Movie(int ct, string yr, string name, string dir);
+	Movie(int, string, string, string, string);
 	Movie(const Movie&);
 	virtual ~Movie();
 
@@ -22,11 +22,13 @@ public:
 	string getYear();
 	string getTitle();
 	string getDirector();
+	string getGenre();
 
 	void setStock(int);
 	void setYear(string);
 	void setTitle(string);
 	void setDirector(string);
+	void setGenre(string);
 
 	//operator overloads
 	virtual bool operator>(const Movie&);
@@ -43,5 +45,6 @@ protected:
 	string year;
 	string title;
 	string director;
+	string genre;
 };
 #endif // MOVIE_H_INCLUDED

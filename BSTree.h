@@ -255,56 +255,61 @@ bool BSTree<T>::insert(T* dataNode, string first, string second)
 	newNode->firstSortCriterion = first;
 	newNode->secondSortCriterion = second;
 
+	if (newNode->data->getTitle() == "Harold and Maude")
+	{
+		cout << "test";
+	}
+
 	// insert the node recursively
 	insert(root, newNode);
-	
-	numNodes++; // increment the total number of nodes in the BST
-	
-	return true;
 
-	//// determine if the node was unique or not (duplicate)
-	//if (isUnique)
-	//{
-	//			
-	//	return true;
-	//}
-	//else  // the node was not unique
-	//{
-	//	delete newNode;
-	//	return false;
-	//}
+	numNodes++; // increment the total number of nodes in the BST
+
+	return true;
 }
 
 //---------------------------- insert -------------------------------------
 // inserts value or skips insertion if duplicate -- unless the insertion is Classic which indicates the 
 template <class T>
 void BSTree<T>::insert(Node*& currNode, Node*& newNode)
-{
+{	
+	//else if (newNode->firstSortCriterion < currNode->firstSortCriterion)
+	//	insert(currNode->left, newNode);     // Search the left branch
+	//else if (newNode->firstSortCriterion > currNode->firstSortCriterion)
+	//	insert(currNode->right, newNode);    // Search the right branch
+	//else if (newNode->firstSortCriterion == currNode->firstSortCriterion)		// TODO: SWITCH TO SECOND SEARCH CRITERION
+	//{
+	//	classicCopy(currNode->data, newNode->data);
+	//}
+
 	// finds the correct BST position and inserts the newNode
 	if (currNode == NULL)
 	{
 		currNode = newNode;                  // Insert the node.
-		//cout << *currNode->data;
+		return;
 	}
-	//else if (*newNode->data < *currNode->data)
-	//	insert(currNode->left, newNode, isUnique);     // Search the left branch
-	//else if (*newNode->data > *currNode->data)
-	//	insert(currNode->right, newNode, isUnique);    // Search the right branch
-	//else if (*newNode->data == *currNode->data)
-	//	isUnique = false;					// Data is a duplicate
 
-	else if (newNode->firstSortCriterion < currNode->firstSortCriterion)
-		insert(currNode->left, newNode);     // Search the left branch
-	else if (newNode->firstSortCriterion > currNode->firstSortCriterion)
-		insert(currNode->right, newNode);    // Search the right branch
-	else if (newNode->firstSortCriterion == currNode->firstSortCriterion)		// TODO: SWITCH TO SECOND SEARCH CRITERION
+	if (newNode->firstSortCriterion == currNode->firstSortCriterion && 
+		newNode->secondSortCriterion == currNode->secondSortCriterion &&
+		numNodes > 0)
 	{
 		classicCopy(currNode->data, newNode->data);
-
-		// TODO: how do I progress insertion?
-
-		//isUnique = false;					// Data is a duplicate
 	}
+	// determine if a duplicate
+	else if (currNode->data->compareEqual(newNode->data))
+	{
+		delete newNode;
+		newNode = NULL;
+	}
+	// LEFT
+	else if (currNode->data->compareGreater(newNode->data))
+		insert(currNode->left, newNode);     // Search the left branch
+	// RIGHT
+	else //if (newNode->firstSortCriterion > currNode->firstSortCriterion)
+		insert(currNode->right, newNode);    // Search the right branch
+
+	// add pointer between two nodes (as they are the same movie)
+
 }
 
 //---------------------------- classicCopy -------------------------------------

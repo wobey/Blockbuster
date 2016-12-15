@@ -1,8 +1,8 @@
-#include "stdafx.h"
+//#include "stdafx.h"
 #include "Classic.h"
 
 
-Classic::Classic(int ct, string yr, string name, string dir, string first, string last, string mon): Movie(ct, yr, name, dir)
+Classic::Classic(int ct, string yr, string name, string dir, string first, string last, string mon, string gen): Movie(ct, yr, name, dir, gen)
 {
 	setStock(ct);
 	setYear(yr);
@@ -46,7 +46,7 @@ void Classic::setMonth(string mon)
 	month = mon;
 }
 
-bool Classic::compareGreater(const Classic* rhs) const
+bool Classic::compareGreater(Classic* rhs)
 {
 	// compare year, month, and major actor
 	if (year != rhs->year)
@@ -60,7 +60,7 @@ bool Classic::compareGreater(const Classic* rhs) const
 	return (actor1).compare(actor2) > 0;
 }
 
-bool Classic::compareEqual(const Classic* rhs) const
+bool Classic::compareEqual(Classic* rhs)
 {
 	string actor1 = actorFirst + actorLast;
 	string actor2 = rhs->actorFirst + rhs->actorLast;

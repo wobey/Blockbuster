@@ -1,4 +1,4 @@
-#include "stdafx.h"
+//#include "stdafx.h"
 #include "CustomerScanner.h"
 
 CustomerScanner::CustomerScanner(fstream& fstream)

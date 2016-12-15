@@ -1,4 +1,4 @@
-#include "stdafx.h"
+//#include "stdafx.h"
 #include "Movie.h"
 
 
@@ -8,15 +8,17 @@ Movie::Movie()
 	year = 1900;
 	title = "No Title";
 	director = "No Director";
+	genre = "No Genre";
 }
 
 
-Movie::Movie(int ct, string yr, string name, string dir)
+Movie::Movie(int ct, string yr, string name, string dir, string gen)
 {
 	stock = ct;
 	year = yr;
 	title = name;
 	director = dir;
+	genre = gen;
 }
 
 Movie::Movie(const Movie& mov)
@@ -48,6 +50,11 @@ string Movie::getDirector()
 	return director;
 }
 
+string Movie::getGenre()
+{
+	return genre;
+}
+
 void Movie::setStock(int s)
 {
 	stock = s;
@@ -66,6 +73,11 @@ void Movie::setTitle(string t)
 void Movie::setDirector(string d)
 {
 	director = d;
+}
+
+void Movie::setGenre(string g)
+{
+	genre = g;
 }
 
 bool Movie::operator>(const Movie &mov)
