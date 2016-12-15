@@ -10,7 +10,7 @@ using namespace std;
 
 class CustomerRecords
 {
-	friend ostream& operator<<(ostream& output, const CustomerRecords cusrec);
+	friend ostream& operator<<(ostream&, const CustomerRecords);
 
 public:
 	//constructors

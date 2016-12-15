@@ -1,4 +1,4 @@
-//////#include "stdafx.h"
+//#include "stdafx.h"
 #include "Scanners.h"
 
 Scanners::Scanners(fstream& customerFile, fstream& movieFile, fstream& commandFile)

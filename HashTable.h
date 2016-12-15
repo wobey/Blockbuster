@@ -190,20 +190,24 @@ int HashTable<T>::getNumEntries() const
 template<class T>
 void HashTable<T>::clear()
 {
-	for (int i = 0; i < tableSize; i++)
+	if (getNumEntries() > 0 && table != NULL)
 	{
-		if (table[i] != NULL)
+		for (int i = 0; i < tableSize; i++)
 		{
-			delete table[i]->data;
-			table[i]->data = NULL;
-			table[i]->next = NULL;
+			if (table[i] != NULL)
+			{
+				delete table[i]->data;
+				table[i]->data = NULL;
+				table[i]->next = NULL;
 
-			delete table[i];
-			table[i] = NULL;
+				delete table[i];
+				table[i] = NULL;
+			}
 		}
-	}
 
-	delete[] table;
+		delete[] table;
+		table = NULL;
+	}
 }
 
 //---------------------------- operator<< -------------------------------------
@@ -214,7 +218,7 @@ std::ostream& operator<<(ostream& ostream, const HashTable<T1>& rhs)
 	for (int i = 1; i < rhs.tableSize; i++)
 	{
 		if (rhs.table[i] != NULL)
-			ostream << "[i=" << i << "] " << *rhs.table[i]->data << endl;
+			ostream << "[i=" << i << "] " << *rhs.table[i]->data;
 	}
 
 	cout << endl;

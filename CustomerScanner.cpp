@@ -28,5 +28,5 @@ void CustomerScanner::readFile(fstream& fstream)
 	}
 	fstream.close();
 
-	//cout << customers << endl;
+	cout << customers << endl;
 }
