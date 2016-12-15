@@ -24,7 +24,7 @@ public:
 	string getLastName() const;
 
 	//Overloads
-	Customer operator=(const Customer&);
+	//Customer operator=(const Customer&);
 
 	//Other
 	static int hash(string) ;
@@ -40,8 +40,8 @@ private:
 	string id;
 	string lastName;
 	string firstName;
-	MediaLibrary rentals;
-	TransactionHistory history;
+	MediaLibrary* rentals;
+	TransactionHistory* history;
 
 };
 #endif //CUSTOMER_H_INCLUDED

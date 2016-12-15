@@ -26,6 +26,6 @@ protected:
 
 	CustomerScanner customerScanner; 
 	MediaScanner mediaScanner;
-	TransactionScanner transactionScanner;
+	//TransactionScanner transactionScanner;
 };
 #endif //SCANNERS_H_INCLUDED

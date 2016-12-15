@@ -11,18 +11,18 @@
 #include <list>
 #include <fstream>
 #include "TransactionHistory.h"
+#include "CustomerRecords.h"
+#include "MediaLibrary.h"
 using namespace std;
 
 class TransactionScanner
 {
 public:
 	TransactionScanner() {}				// default constructor
-	TransactionScanner(ifstream&);		// constructor
+	TransactionScanner(fstream&, CustomerRecords*, MediaLibrary*);		// constructor
 	~TransactionScanner();				// destructor
 
 private:
-	TransactionHistory transactions;
-
-	void readFile(ifstream&);		
+	void readFile(fstream&);
 };
 #endif

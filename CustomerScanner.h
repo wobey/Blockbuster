@@ -20,8 +20,10 @@ public:
 	CustomerScanner(fstream&);			// constructor
 	~CustomerScanner();					// destructor
 
+	CustomerRecords* getCustomerRecords();
+
 private:
-	CustomerRecords customers;
+	CustomerRecords* customers;
 
 	void readFile(fstream&);		
 };

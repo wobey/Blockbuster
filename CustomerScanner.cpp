@@ -3,11 +3,16 @@
 
 CustomerScanner::CustomerScanner(fstream& fstream)
 {
-	customers = CustomerRecords();
+	customers = new CustomerRecords();
 	readFile(fstream);
 }
 
-CustomerScanner::~CustomerScanner() { }
+CustomerScanner::~CustomerScanner() 
+{ 
+	// TODO: ensure this is proper
+	//delete customers;
+	customers->~CustomerRecords();
+}
 
 void CustomerScanner::readFile(fstream& fstream)
 {
@@ -22,11 +27,16 @@ void CustomerScanner::readFile(fstream& fstream)
 		customer = new Customer(id, last, first);
 
 		if (id != "")
-			customers.insert(customer);
+			customers->insert(customer);
 		else
 			delete customer;
 	}
 	fstream.close();
 
-	cout << customers << endl;
+	cout << *customers << endl;
+}
+
+CustomerRecords* CustomerScanner::getCustomerRecords()
+{
+	return customers;
 }

@@ -22,10 +22,10 @@ bool Scanners::readFile(fstream& fstream, string type)
 {
 	if (type == "Customers")
 		customerScanner = CustomerScanner(fstream);
-	//if (type == "Movies")
-	//	mediaScanner = MediaScanner(fstream);
+	if (type == "Movies")
+		mediaScanner = MediaScanner(fstream);
 	//if (type == "Commands")
-
+	//	transactionScanner = TransactionScanner(fstream, customerScanner.getCustomerRecords(), mediaScanner.getMediaLibrary());
 	return true;
 }
 

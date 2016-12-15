@@ -1,15 +1,14 @@
 //#include "stdafx.h"
 #include "TransactionScanner.h"
 
-TransactionScanner::TransactionScanner(ifstream& ifstream)
+TransactionScanner::TransactionScanner(fstream& fstream, CustomerRecords* customerRecords, MediaLibrary* mediaLibrary)
 {
-	transactions = TransactionHistory();
-	readFile(ifstream);
+	readFile(fstream);
 }
 
 TransactionScanner::~TransactionScanner() { }
 
-void TransactionScanner::readFile(ifstream& ifstream)
+void TransactionScanner::readFile(fstream& fstream)
 {
 	// implement code to read stream
 }

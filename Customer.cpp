@@ -21,12 +21,17 @@ Customer::Customer(string idNum, string last, string first)
 	id = idNum;
 	lastName = last;
 	firstName = first;
+
+	rentals = new MediaLibrary;
+	history = new TransactionHistory;
 }
 
 //---------------------------- DefaultDestructor -------------------------------------
 // destructor
 Customer::~Customer()
 {
+	delete rentals;
+	delete history;
 }
 
 //---------------------------- hash -------------------------------------
@@ -63,27 +68,27 @@ string Customer::getID() const
 	return id;
 }
 
-Customer Customer::operator=(const Customer &cust)
-{
-	id = cust.id;
-	lastName = cust.lastName;
-	firstName = cust.firstName;
-	MediaLibrary rentals(cust.rentals);
-	return *this;
-}
+//Customer Customer::operator=(const Customer &cust)
+//{
+//	id = cust.id;
+//	lastName = cust.lastName;
+//	firstName = cust.firstName;
+//	MediaLibrary rentals(cust.rentals);
+//	return *this;
+//}
 
 bool Customer::insertRental(string media, string genre, string title, string dir, string actorFirst, string actorLast, string month, string yr)
 {
 	//Check if customer has a copy of this movie
 	//If not, insert new movie
 	//Otherwise increment stock in customer rentals
-	Movie *findMovie = rentals.search(genre, month, yr, title, actorLast, dir);
+	Movie *findMovie = rentals->search(genre, month, yr, title, actorLast, dir);
 	
 	if (findMovie == NULL)
 	{	
 		// create movie to insert 
 
-		rentals.insert(media, genre, title, dir, actorFirst, actorLast, month, yr);
+		rentals->insert(media, genre, title, dir, actorFirst, actorLast, month, yr);
 	}
 	else
 	{
@@ -95,7 +100,7 @@ bool Customer::insertRental(string media, string genre, string title, string dir
 
 Movie *Customer::searchRentals(string genre, string month, string yr, string title, string dir, string actorLast)
 {	
-	Movie *findMovie = rentals.search(genre, month, yr, title, actorLast, dir);
+	Movie *findMovie = rentals->search(genre, month, yr, title, actorLast, dir);
 	return findMovie;
 }
 
@@ -104,7 +109,7 @@ bool Customer::deleteRental(Movie *moviePtr)
 	moviePtr->decreaseStock();
 	if (moviePtr->getStock() == 0)
 	{
-		rentals.deleteMovie(moviePtr);
+		rentals->deleteMovie(moviePtr);
 	}
 	return false;
 }
@@ -112,13 +117,13 @@ bool Customer::deleteRental(Movie *moviePtr)
 void Customer::printHistory()
 {
 	cout << "Transaction history for customer# " << getID() << ": " << endl;
-	history.print();
+	history->print();
 }
 
 void Customer::addHistory(string trans, string title, string dir, string actorFirst, string actorLast, string month, string yr)
 {
 	string totalTransaction = trans + " " + title + " " + dir + " " + actorFirst + " " + actorLast + " " + month + " " + yr;
-	history.insert(totalTransaction);
+	history->insert(totalTransaction);
 	
 }
 

@@ -94,9 +94,16 @@ void MediaLibrary::print()
 MediaLibrary::~MediaLibrary()
 {	
 	//Deletes any movies remaining in the genre BSTrees
-	classics->makeEmpty();
-	dramas->makeEmpty();
-	comedies->makeEmpty();
+	//if (classics != NULL || dramas != NULL || comedies != NULL)
+	//{
+	//	classics->makeEmpty();
+	//	dramas->makeEmpty();
+	//	comedies->makeEmpty();
+	//}
+
+	//delete classics;
+	//delete dramas;
+	//delete comedies;
 
 	// TODO verify with valgrind there are no leaks here
 }
@@ -104,7 +111,7 @@ MediaLibrary::~MediaLibrary()
 template <class T1>
 ostream& operator<<(ostream& ostream, const BSTree<T1> rhs)
 {
-	ostream << rhs;
+	ostream << *rhs;
 
 	return ostream;
 }

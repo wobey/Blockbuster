@@ -21,9 +21,11 @@ public:
 	MediaScanner(fstream&);			// constructor
 	~MediaScanner();					// destructor
 
-private:
-	MediaLibrary media;
+	MediaLibrary* getMediaLibrary();
 
-	void readFile(fstream&);	
+private:
+	MediaLibrary* media;
+
+	void readFile(fstream&);
 };
 #endif

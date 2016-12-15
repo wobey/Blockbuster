@@ -138,9 +138,12 @@ bool BSTree<T>::isEmpty() const
 template <class T>
 void BSTree<T>::makeEmpty()
 {
-	makeEmpty(root);
-	root = NULL;
-	numNodes = 0;
+	if (root)
+	{
+		makeEmpty(root);
+		root = NULL;
+		numNodes = 0;
+	}
 }
 
 template <class T>
@@ -254,11 +257,6 @@ bool BSTree<T>::insert(T* dataNode, string first, string second)
 	newNode->left = newNode->right = NULL;
 	newNode->firstSortCriterion = first;
 	newNode->secondSortCriterion = second;
-
-	if (newNode->data->getTitle() == "Harold and Maude")
-	{
-		cout << "test";
-	}
 
 	// insert the node recursively
 	insert(root, newNode);
@@ -547,7 +545,7 @@ template <class T1>
 ostream& operator<<(ostream& output, const BSTree<T1>& bst)
 {
 	// in-order traversal output of the values
-	bst.displayInOrder(bst.root, output);
+	bst.displayInOrder(bst.root);
 	output << endl;
 
 	return output;

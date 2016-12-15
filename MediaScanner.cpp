@@ -3,21 +3,26 @@
 
 MediaScanner::MediaScanner(fstream& fstream)
 {
-	media = MediaLibrary();
+	media = new MediaLibrary();
 	readFile(fstream);
 }
 
-MediaScanner::~MediaScanner() { }
+MediaScanner::~MediaScanner() 
+{ 
+	// TODO: ensure this is the correct way
+	//delete media;
+	media->~MediaLibrary();
+}
 
 void MediaScanner::readFile(fstream& fstream)
 {
-	while (!fstream.eof())
+	while (fstream.peek() != EOF)//!fstream.eof())
 	{
 		Movie* movie = MediaFactory::createMovie(fstream);
 
 		if (movie != NULL)
 		{
-			media.insert(movie, movie->getGenre());
+			media->insert(movie, movie->getGenre());
 		}
 		else
 			delete movie;
@@ -25,7 +30,12 @@ void MediaScanner::readFile(fstream& fstream)
 
 	fstream.close();
 
-	cout << media.classics << endl;
-	cout << media.comedies << endl;
-	cout << media.dramas << endl;
+	//cout << *media->classics << endl;
+	//cout << *media.comedies << endl;
+	//cout << *media.dramas << endl;
+}
+
+MediaLibrary* MediaScanner::getMediaLibrary()
+{
+	return media;
 }
