@@ -1,4 +1,4 @@
-//#include "stdafx.h"
+#include "stdafx.h"
 #include "TransactFactory.h"
 
 Transaction *TransactFactory::makeTransaction(MediaLibrary &lib, CustomerRecords *custTable, string type, string custId, string media, string genre,

@@ -1,4 +1,4 @@
-//#include "stdafx.h"
+#include "stdafx.h"
 #include "Movie.h"
 
 
@@ -24,7 +24,9 @@ Movie::Movie(const Movie& mov)
 	*this = mov;
 }
 
-Movie::~Movie() { }
+Movie::~Movie()
+{
+}
 
 int Movie::getStock()
 {
@@ -64,22 +66,6 @@ void Movie::setTitle(string t)
 void Movie::setDirector(string d)
 {
 	director = d;
-}
-
-Movie* Movie::operator=(const Movie* mov)
-{
-	//duplicate check
-	if (this == mov)
-	{
-		return this;
-	}
-
-	stock = mov->stock;
-	year = mov->year;
-	title = mov->title;
-	director = mov->director;
-
-	return this;
 }
 
 bool Movie::operator>(const Movie &mov)

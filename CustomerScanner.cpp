@@ -1,4 +1,4 @@
-//////#include "stdafx.h"
+#include "stdafx.h"
 #include "CustomerScanner.h"
 
 CustomerScanner::CustomerScanner(fstream& fstream)
@@ -28,5 +28,5 @@ void CustomerScanner::readFile(fstream& fstream)
 	}
 	fstream.close();
 
-	cout << customers << endl;
+	//cout << customers << endl;
 }

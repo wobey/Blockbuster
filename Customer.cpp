@@ -1,4 +1,4 @@
-//#include "stdafx.h"
+#include "stdafx.h"
 // ------------------------------------------------ Customer.cpp ----------------------------------------------------------
 // John Fitzgerald, Christine Sutton CSS343 A 
 // Date of Creation: 12-11-16
@@ -122,7 +122,7 @@ void Customer::addHistory(string trans, string title, string dir, string actorFi
 
 //---------------------------- operator << -------------------------------------
 // displays customer information
-ostream& operator<<(ostream& ostream, const Customer& rhs)
+ostream& operator<<(ostream& ostream, Customer& rhs)
 {
 	ostream << "Customer Name: " << rhs.getFirstName() << " " << rhs.getLastName() << " ";
 	ostream << "ID: " << rhs.getID() << endl;

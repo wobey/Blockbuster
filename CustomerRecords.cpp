@@ -1,11 +1,10 @@
-//#include "stdafx.h"
+#include "stdafx.h"
 #include "CustomerRecords.h"
 
 
 CustomerRecords::CustomerRecords()
 {
-	if (table != NULL)
-		table = new HashTable<Customer>;
+	table = new HashTable<Customer>;
 }
 
 CustomerRecords::~CustomerRecords()
@@ -37,11 +36,4 @@ int CustomerRecords::size() const
 void CustomerRecords::clear()
 {
 	table->clear();
-}
-
-ostream& operator<<(ostream& ostream, const CustomerRecords& rhs)
-{
-	ostream << *rhs.table;
-
-	return ostream;
 }

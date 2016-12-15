@@ -28,9 +28,6 @@ public:
 	void setTitle(string);
 	void setDirector(string);
 
-	//assigns
-	virtual Movie* operator=(const Movie*);
-
 	//operator overloads
 	virtual bool operator>(const Movie&);
 	virtual bool operator==(const Movie&);
